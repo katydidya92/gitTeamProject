@@ -7,15 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 네비게이션 -->
-<jsp:include page="../inc/nav.jsp" />
-<!-- 네비게이션 -->
-<!-- 메인 페이지 -->
-	<h1>메인 페이지</h1>
-<!-- 메인 페이지 -->
-
-<!-- footer -->
-<jsp:include page="../inc/footer.jsp" />
-<!-- footer -->
+	<h1>footer</h1>
 </body>
 </html>
