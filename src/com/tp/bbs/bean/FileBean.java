@@ -58,4 +58,11 @@ public class FileBean {
 		this.file_date = file_date;
 	}
 
+	@Override
+	public String toString() {
+		return "FileBean [fileID=" + fileID + ", fileName=" + fileName + ", fileRealName=" + fileRealName + ", bbsID="
+				+ bbsID + ", userID=" + userID + ", file_date=" + file_date + "]";
+	}
+
+	
 }

@@ -40,4 +40,10 @@ public class LocationBean {
 		this.location_date = location_date;
 	}
 
+	@Override
+	public String toString() {
+		return "LocationBean [locationID=" + locationID + ", location_spot=" + location_spot + ", userID=" + userID
+				+ ", location_date=" + location_date + "]";
+	}
+	
 }

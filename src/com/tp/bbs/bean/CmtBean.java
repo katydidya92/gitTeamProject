@@ -102,4 +102,14 @@ public class CmtBean {
 	public void setLikeID(int likeID) {
 		this.likeID = likeID;
 	}
+
+	@Override
+	public String toString() {
+		return "CmtBean [cmtID=" + cmtID + ", userNickName=" + userNickName + ", cmt_content=" + cmt_content
+				+ ", bbsID=" + bbsID + ", cmt_seq=" + cmt_seq + ", cmt_lev=" + cmt_lev + ", cmt_available="
+				+ cmt_available + ", bbs_category=" + bbs_category + ", cmt_date=" + cmt_date + ", ip=" + ip
+				+ ", likeID=" + likeID + "]";
+	}
+	
+	
 }

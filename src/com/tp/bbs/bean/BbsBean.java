@@ -166,4 +166,13 @@ public class BbsBean {
 		this.ip = ip;
 	}
 
+	@Override
+	public String toString() {
+		return "BbsBean [bbsID=" + bbsID + ", bbs_ref=" + bbs_ref + ", bbs_seq=" + bbs_seq + ", bbs_lev=" + bbs_lev
+				+ ", bbs_available=" + bbs_available + ", bbs_category=" + bbs_category + ", bbs_title=" + bbs_title
+				+ ", bbs_content=" + bbs_content + ", bbs_readcount=" + bbs_readcount + ", bbs_date=" + bbs_date
+				+ ", userID=" + userID + ", userNickName=" + userNickName + ", fileID=" + fileID + ", cmtID=" + cmtID
+				+ ", best=" + best + ", isAdmin=" + isAdmin + ", likeID=" + likeID + ", ip=" + ip + "]";
+	}
+
 }

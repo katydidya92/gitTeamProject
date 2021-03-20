@@ -74,4 +74,11 @@ public class LikeBean {
 		this.wish = wish;
 	}
 
+	@Override
+	public String toString() {
+		return "LikeBean [likeID=" + likeID + ", userID=" + userID + ", bbsID=" + bbsID + ", bbs_category="
+				+ bbs_category + ", cmtID=" + cmtID + ", like=" + like + ", unlike=" + unlike + ", wish=" + wish + "]";
+	}
+
+	
 }
