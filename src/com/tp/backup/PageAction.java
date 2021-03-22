@@ -8,13 +8,13 @@ public class PageAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		System.out.println("M : GoodsAddAction_execute() 호출");
+		System.out.println("M : PageAction_execute() 호출");
 		
 		
 		
 		// 페이지 이동
 		ActionForward forward = new ActionForward();
-		forward.setPath("./GoodsList.ag");
+		forward.setPath("");
 		
 		forward.setRedirect(true);
 		// true - sendRedirect() 방식으로 이동 (주소,화면 변경O)

@@ -33,14 +33,19 @@ public class Controller extends HttpServlet {
 		ActionForward forward = null;
 		
 		System.out.println("\n 2. 가상 주소 매핑");
-		if(command.equals("/GoodsAdd.ag")){
-							// 해당 주소 작성
-			forward = new ActionForward();
-			forward.setPath("admingoods/admin_goods_write.jsp");
-			forward.setRedirect(false);
-		} 
-		else if(command.equals("/GoodsAddAction.ag")) {
-								// 해당 주소 작성
+		if(command.equals("")){
+					// 넘어갈 주소 작성
+			/*action = new Action();*/
+			// action 페이지 생성 후 작성
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("")) {
+							// 넘어갈 주소 작성
 			/*action = new Action();*/
 			// action 페이지 생성 후 작성
 			
