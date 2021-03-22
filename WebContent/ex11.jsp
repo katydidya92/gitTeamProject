@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="./js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
@@ -16,11 +18,21 @@
 				    var galTitle = $(this).find('galTitle').text();
 				    var galSearchKeyword = $(this).find('galSearchKeyword').text();
 				    var galWebImageUrl = $(this).find('galWebImageUrl').text();
-					    $('#a12').append(
-					    				"<td>이름:"+galTitle+"</td>"+
-					    				"<td>검색키워드:"+galSearchKeyword+"</td>"+
-					    			"<td>그림: <img src ="+galWebImageUrl+" width='100' height='100'></td>"
-						    				);
+				    console.log(galWebImageUrl);
+				    var size = 4;
+				    var col = 8;
+				    var row = (size / col) + (size % col > 0 ? 1 : 0);
+				    var num = 0;
+				      for(var j = 0; j < row; j++){
+				      for(var k = 0; k < col; j++){
+				    	  $('#a12').append("<td>이름:"+galTitle+
+					    				"검색키워드:"+galSearchKeyword+
+					    			"그림: <img src ="+galWebImageUrl+" width='100' height='100'></td>"
+					    			);
+				    	  num++;
+				    	  if(size <= num) break;
+				      }
+				      }
 			   });
 		   }
 	   });
@@ -30,14 +42,8 @@
 </head>
 <body>
  <table>
- 	<tr>
- 		<td>1</td>
- 		<td>1</td>
- 		<td>1</td>
- 	</tr>
- 	<tr id = "a12">
- 	
- 	</tr>
+ <tr id = "a12"></tr>
  </table>
+
 </body>
 </html>
