@@ -16,11 +16,12 @@
 				    var galTitle = $(this).find('galTitle').text();
 				    var galSearchKeyword = $(this).find('galSearchKeyword').text();
 				    var galWebImageUrl = $(this).find('galWebImageUrl').text();
-					    $('#a12').append(
-					    				"<td>이름:"+galTitle+"</td>"+
-					    				"<td>검색키워드:"+galSearchKeyword+"</td>"+
-					    			"<td>그림: <img src ="+galWebImageUrl+" width='100' height='100'></td>"
-						    				);
+				    
+				    $('#a12').append(
+				    				"이름:"+galTitle+"<br>"+
+				    				"검색키워드:"+galSearchKeyword+"<br>"+
+				    			"그림: <img src ="+galWebImageUrl+" width='100' height='100'>"
+				    				);
 			   });
 		   }
 	   });
@@ -29,15 +30,7 @@
 </script>
 </head>
 <body>
- <table>
- 	<tr>
- 		<td>1</td>
- 		<td>1</td>
- 		<td>1</td>
- 	</tr>
- 	<tr id = "a12">
- 	
- 	</tr>
- </table>
+ <h1>WebContent/jq3/xml.html</h1>
+ <div id = "a12"></div>
 </body>
 </html>

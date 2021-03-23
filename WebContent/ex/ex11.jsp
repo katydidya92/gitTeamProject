@@ -15,24 +15,24 @@
 			   				// 상위 카테고리 선택
 			   $(data).find('item').each(function(){
 				    // 원하는 데이터 이름 선택
+				    var count = 0;
+				    $(this).find('galWebImageUrl').each(function(){
+				    	count++;
+				    }); // .length()
 				    var galTitle = $(this).find('galTitle').text();
 				    var galSearchKeyword = $(this).find('galSearchKeyword').text();
 				    var galWebImageUrl = $(this).find('galWebImageUrl').text();
-				    console.log(galWebImageUrl);
-				    var size = 4;
-				    var col = 8;
-				    var row = (size / col) + (size % col > 0 ? 1 : 0);
-				    var num = 0;
-				      for(var j = 0; j < row; j++){
-				      for(var k = 0; k < col; j++){
-				    	  $('#a12').append("<td>이름:"+galTitle+
-					    				"검색키워드:"+galSearchKeyword+
-					    			"그림: <img src ="+galWebImageUrl+" width='100' height='100'></td>"
+				    
+				    console.log(count);
+				    
+				    
+				    
+				    for(var j = 0; j < count; j++) {
+				    	  $('#a12').append("<tr><td>이름:"+galTitle+
+					    				"<br/>검색키워드:"+galSearchKeyword/* .split(",")[3] */+
+					    			"<br/>그림: <img src ="+galWebImageUrl+" width='100' height='100'></td></tr>"
 					    			);
-				    	  num++;
-				    	  if(size <= num) break;
-				      }
-				      }
+				    }
 			   });
 		   }
 	   });
@@ -41,8 +41,7 @@
 </script>
 </head>
 <body>
- <table>
- <tr id = "a12"></tr>
+ <table id = "a12">
  </table>
 
 </body>
