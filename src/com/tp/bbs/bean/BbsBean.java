@@ -16,7 +16,6 @@ public class BbsBean {
 	private String userID;
 	private String userNickName;
 	private int fileID;
-	private int cmtID;
 	private int best;
 	private int isAdmin;
 	private int likeID;
@@ -126,14 +125,6 @@ public class BbsBean {
 		this.fileID = fileID;
 	}
 
-	public int getCmtID() {
-		return cmtID;
-	}
-
-	public void setCmtID(int cmtID) {
-		this.cmtID = cmtID;
-	}
-
 	public int getBest() {
 		return best;
 	}
@@ -171,8 +162,8 @@ public class BbsBean {
 		return "BbsBean [bbsID=" + bbsID + ", bbs_ref=" + bbs_ref + ", bbs_seq=" + bbs_seq + ", bbs_lev=" + bbs_lev
 				+ ", bbs_available=" + bbs_available + ", bbs_category=" + bbs_category + ", bbs_title=" + bbs_title
 				+ ", bbs_content=" + bbs_content + ", bbs_readcount=" + bbs_readcount + ", bbs_date=" + bbs_date
-				+ ", userID=" + userID + ", userNickName=" + userNickName + ", fileID=" + fileID + ", cmtID=" + cmtID
-				+ ", best=" + best + ", isAdmin=" + isAdmin + ", likeID=" + likeID + ", ip=" + ip + "]";
+				+ ", userID=" + userID + ", userNickName=" + userNickName + ", fileID=" + fileID + ", best=" + best
+				+ ", isAdmin=" + isAdmin + ", likeID=" + likeID + ", ip=" + ip + "]";
 	}
 
 }
