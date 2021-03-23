@@ -1,4 +1,4 @@
-package com.tp.bbs.bean;
+package com.tp.bbs.db;
 
 import java.sql.Timestamp;
 
@@ -162,8 +162,8 @@ public class BbsBean {
 		return "BbsBean [bbsID=" + bbsID + ", bbs_ref=" + bbs_ref + ", bbs_seq=" + bbs_seq + ", bbs_lev=" + bbs_lev
 				+ ", bbs_available=" + bbs_available + ", bbs_category=" + bbs_category + ", bbs_title=" + bbs_title
 				+ ", bbs_content=" + bbs_content + ", bbs_readcount=" + bbs_readcount + ", bbs_date=" + bbs_date
-				+ ", userID=" + userID + ", userNickName=" + userNickName + ", fileID=" + fileID + ", best=" + best
-				+ ", isAdmin=" + isAdmin + ", likeID=" + likeID + ", ip=" + ip + "]";
+				+ ", userID=" + userID + ", userNickName=" + userNickName + ", fileID=" + fileID
+				+ ", best=" + best + ", isAdmin=" + isAdmin + ", likeID=" + likeID + ", ip=" + ip + "]";
 	}
 
 }
