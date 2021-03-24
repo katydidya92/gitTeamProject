@@ -16,6 +16,7 @@
 <!-- 네비게이션 -->
 <!-- 메인 페이지 -->
 	<h1>메인 페이지</h1>
+	123
 	<a href = "./Write.pa">작성</a>
 	<a href = ./PageListAction.pa>리스트</a>
 	<a href = ./PageListAction2.pa>리스트2</a>
