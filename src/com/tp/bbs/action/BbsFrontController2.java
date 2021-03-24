@@ -1,4 +1,4 @@
-package com.tp.backup;
+package com.tp.bbs.action;
 
 import java.io.IOException;
 
@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 // 원하는 주소 지정
-/*@WebServlet("*.ba")*/
-public class Controller extends HttpServlet {
+@WebServlet("*.pa")
+public class BbsFrontController2 extends HttpServlet {
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
@@ -27,35 +28,51 @@ public class Controller extends HttpServlet {
 		String contextPath = request.getContextPath();
 		
 		String command = requestURI.substring(contextPath.length());
-		System.out.println(command);
 		
 		Action action = null;
 		ActionForward forward = null;
 		
 		System.out.println("\n 2. 가상 주소 매핑");
-		if(command.equals("")){
-					// 넘어갈 주소 작성
-			/*action = new Action();*/
-			// action 페이지 생성 후 작성
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("")) {
-							// 넘어갈 주소 작성
-			/*action = new Action();*/
-			// action 페이지 생성 후 작성
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 		
+		if(command.equals("/Main.pa")){
+			
+			forward = new ActionForward();
+			forward.setPath("./main/main.jsp");
+			forward.setRedirect(false);			
+		}
+		else if(command.equals("/Write.pa")){
+			
+			forward = new ActionForward();
+			forward.setPath("./comunity/write.jsp");
+			forward.setRedirect(false);			
+		}
+		else if(command.equals("/PageAddAction.pa")){
+			action = new PageAddAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/PageListAction.pa")){
+			action = new PageListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/PageListAction2.pa")){
+			action = new PageListAction2();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		System.out.println("\n 3. 페이지 이동");
 		if(forward != null) {

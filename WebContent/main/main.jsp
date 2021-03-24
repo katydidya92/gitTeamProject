@@ -16,10 +16,6 @@
 <!-- 네비게이션 -->
 <!-- 메인 페이지 -->
 	<h1>메인 페이지</h1>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> b003f7fffb7bd0d1c5e7d28a505d0bc1abd392fc
 	<a href = "./Write.pa">작성</a>
 	<a href = ./PageListAction.pa>리스트</a>
 	<a href = ./PageListAction2.pa>리스트2</a>
@@ -32,21 +28,10 @@
 	<br>
 	<a href="./BbsList33.bbs"> 게시글3   </a>
 	
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-	
-	
-	<h2>hj</h2>
-=======
->>>>>>> 2a2625c326deb80329f5650cc02b69ee7cd40579
->>>>>>> b003f7fffb7bd0d1c5e7d28a505d0bc1abd392fc
 <!-- 메인 페이지 -->
 
 <!-- footer -->
 <jsp:include page="../inc/footer.jsp" />
 <!-- footer -->
->>>>>>> 195061e6467724ba8899c4601cd3803ed556edb5
 </body>
 </html>

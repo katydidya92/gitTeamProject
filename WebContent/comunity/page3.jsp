@@ -23,11 +23,11 @@ function displayData(xmlHttp) { // xmlHttp를 매개변수로 사용하는 객�
 	xmlObj = xmlHttp.responseXML;	// 요청한 데이터를 XML DOM 객체로 반환함.
 	result = "<table border = '1'><tr>"; // result라는 변수에 해당 값을 넣어서 테이블 시작을 알림
 	cityList = xmlObj.getElementsByTagName("item"); // item 태그의 내용을 cityList로 사용.
-	for(idx = 0; idx < 20; idx++) { // 해당 데이터 길이만큼 반복하겠습니다.
+	for(idx = 0; idx < ${totalRowCount}; idx++) { // 해당 데이터 길이만큼 반복하겠습니다.
 		result += "<td>" + cityList[idx].getElementsByTagName("galTitle")[0].childNodes[0].nodeValue + "</td>"
 				+"<td><img src=" +	cityList[idx].getElementsByTagName("galWebImageUrl")[0].childNodes[0].nodeValue 
 				+ " width='100' height='100'>";
-			if((idx+1) % 5 != 0) { // 5칸마다 다음 줄로 넘기겠습니다. // 숫자도 가능
+			if((idx+1) % ${pagePerRow } != 0) { // 5칸마다 다음 줄로 넘기겠습니다. // 숫자도 가능
 				result += "</td>"; // 5번째 칸이 아니기 때문에 td만 추가해서 가로줄만 작성하겠습니다.
 			} else {
 				result += "</td></tr><tr>"; // 5칸이 되었기 때문에 다음 줄로 넘기겠습니다.

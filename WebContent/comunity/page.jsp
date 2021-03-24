@@ -10,10 +10,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<<<<<<< HEAD
 <link href="${contextPath }/css/main.css" rel="stylesheet" type="text/css">
-=======
->>>>>>> b003f7fffb7bd0d1c5e7d28a505d0bc1abd392fc
 <title>Insert title here</title>
 
 </head>
@@ -28,10 +25,7 @@
 		현재 페이지 번호 : ${currentPage } <br>
 		마지막 페이지 번호 : ${endPage } <br>
 		페이지 당 출력할 행의 수 : ${pagePerRow } <br>
-<<<<<<< HEAD
 		페이지 당 출력할 열의 수 : ${pagePerCol } <br>
-=======
->>>>>>> b003f7fffb7bd0d1c5e7d28a505d0bc1abd392fc
 		<br>
 	</div>
 
@@ -67,15 +61,10 @@
 		<a href="<c:url value='PageListAction.pa?currentPage=${1}'/>">처음</a>
 			<!-- 출력할 페이지 수 계산 -->
 			<fmt:formatNumber value="${currentPage/4 - (currentPage/4 % 1)}" type="pattern" pattern="0" var="full" />
-<<<<<<< HEAD
 							<!-- value = 값 / pattern 속성 : 0 = 수치 / type = 데이터형 / var : 사용할 변수명 -->
 							<!--ex) 5 페이지의 경우 : 5 / 4 - (5/4 % 1) -->
 			<c:set var="full" value="${full * 4}" />
 			<!-- set : 변수 설정 -->
-=======
-			<c:set var="full" value="${full * 4}" />
-			
->>>>>>> b003f7fffb7bd0d1c5e7d28a505d0bc1abd392fc
 			<!-- prev(전 페이지), next(다음 페이지) 개수 설정 -->
 			<c:set var="scope" value="${currentPage%4}" />
 			<c:choose>
@@ -142,11 +131,7 @@
 			<td>
 				제목 <br>
 				${bbs.bbs_title}
-<<<<<<< HEAD
 			<c:if test="${((status.index+1) mod pagePerCol) == 0 }">
-=======
-			<c:if test="${((status.index+1) mod 3) == 0 }">
->>>>>>> b003f7fffb7bd0d1c5e7d28a505d0bc1abd392fc
 			</td>
 		</tr>
 		<tr>
