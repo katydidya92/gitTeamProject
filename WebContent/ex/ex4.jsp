@@ -8,9 +8,11 @@
 </head>
 <body>
 
-<div id="map" style="width:100%;height:350px;"></div> 
-<p><em>지도를 클릭해주세요!</em></p> 
-<div id="clickLatlng"></div>
+<form action="#" method="get" >
+	<div id="map" style="width:100%;height:350px;"></div> 
+	<p>지도를 클릭해주세요!</p> 
+	<div id="clickLatlng"></div>
+</form>
 
 <!-- 반드시 실행 코드보다 먼저 선언되어야 합니다.  -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6f45bc9f1692251de1b145e76f5e2f6"></script>
@@ -41,8 +43,8 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     // 마커 위치를 클릭한 위치로 옮깁니다
     marker.setPosition(latlng);
     
-    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-    message += '경도는 ' + latlng.getLng() + ' 입니다';
+    var message = '<input type = "hidden" value ="' + latlng.getLat() + ', ';
+    message += latlng.getLng() + '">';
     
     var resultDiv = document.getElementById('clickLatlng'); 
     resultDiv.innerHTML = message;
