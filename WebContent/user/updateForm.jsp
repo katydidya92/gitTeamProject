@@ -73,7 +73,6 @@
  </script>
  <!-- 우편번호 API -->
 
-
  <script type="text/javascript">
 	function email_check() {
 		// 이메일
@@ -173,27 +172,16 @@
 
  </script>
  
- 
 <meta charset="utf-8" />
 <title>Insert title here</title>
-
-
-
 </head>
 <body>
-	
-	<%
-	  
-	%>
-
-
 	
 	<h1>정보 수정 페이지</h1>
 	
 	<c:set var="user" value="${ub }"></c:set>
 	
-	<form action="./UserUpdateAction.ua" method="post" name="fr" enctype="multipart/form-data"
-	 onsubmit="return check_value()">
+	<form action="./UserUpdateAction.ua" method="post" name="fr" enctype="multipart/form-data" onsubmit="return check_value()">
 	 <table border="1">
 	  <tr>
 	   <th>아이디 </th> 
@@ -214,7 +202,7 @@
 	  <tr>
 	   <th>이메일</th> 
 	   <td> 
-	    <input type="email" name="Useremail"  id="userEmail" onkeydown="inputEmailCheck()" value="${user.userEmail }">
+	    <input type="email" name="userEmail"  id="userEmail" onkeydown="inputEmailCheck()" value="${user.userEmail }">
 	    <input type="button" value="중복확인" onclick="email_check()">
 	    <input type="hidden" name="eDuplication" value="eUnCheck">
 	   </td>
@@ -251,14 +239,11 @@
          </div>
 	   </td>
 	  </tr>
-	  
 	  <tr> 
 	   <td colspan="2">
 	    <input type="submit" value="수정하기"> 
 	    <input type="reset" value="취소"> </td>	   
 	  </tr> 
-	  
-	  
 	 </table>
 	</form>
 	
