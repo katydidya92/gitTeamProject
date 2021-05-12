@@ -25,21 +25,7 @@ public class LocationFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 		System.out.println("\n 2. 가상 주소 매핑");
-		/*
-		if(command.equals("/Attraction.lo")){
-			System.out.println("C: /Attraction.lo 호출");
-			System.out.println("C : DB사용없이 view페이지 이동");
-
-			action = new PageAction();
-			// action 페이지 생성 후 작성
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		*/
+		
 		if(command.equals("/AtrList.lo")){
 			System.out.println("C: /AtrList.lo 호출");
 			System.out.println("C : DB사용없이 view페이지 이동");

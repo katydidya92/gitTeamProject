@@ -1,376 +1,236 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원가입</title>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<title>GTB 회원가입</title>
+
+<script src="${contextPath }/js/jquery-3.5.1.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-  <script type="text/javascript">
-  	
-   //비밀번호 일치 확인
-   $(function(){
-	  $("#alert-success").hide();
-      $("#alert-danger").hide(); 
-  	  $("input").keyup(function(){
-		  var pwd1=$("#pwd1").val(); 
-  	 	  var pwd2=$("#pwd2").val();
-  	  if(pwd1 != "" || pwd2 != ""){
-  		  if(pwd1 == pwd2){
-  			  $("#alert-success").show(); 
-  			  $("#alert-danger").hide(); 
-  			  $("#submit").removeAttr("disabled"); 
-  		  }else{
-  			  $("#alert-success").hide();
-  			  $("#alert-danger").show(); 
-  			  $("#submit").attr("disabled", "disabled");
-  			  } 
-  		  }
-  	  });
-  	  
-  	 $("#userEmail").on("keyup", function() {
-         if($(this).val().length==0 ) $("#checkBtn").hide();
-         else $("#checkBtn").show();
-     });
-  	  
-  	});
-   	   // 아이디 중복체크 화면open
-	   function openIdChk(){
-			
-			window.name = "parentForm";
-			window.open("user/IdCheckForm.jsp",
-					"chkForm", "width=500, height=300, resizable = no, scrollbars = no");	
-		}
-   	   
-		// 아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.
-		// 이렇게 하는 이유는 중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때
-		// 다시 중복체크를 하도록 한다.
-		function inputIdChk(){
-			document.fr.idDuplication.value ="idUncheck";
-		}
-  		
-		// 이메일 중복체크 화면open
-		   function openEmailChk(){
-				
-				window.name = "parentForm";
-				window.open("user/EmailCheckForm.jsp",
-						"chkForm", "width=500, height=300, resizable = no, scrollbars = no");	
-			}
-	   	   
-			// 이메일 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.
-			function inputEmailChk(){
-				document.fr.emailDuplication.value ="emailUncheck";
-			}
-		
-		// 닉네임 중복체크 화면open
-		   function openNickChk(){
-				
-				window.name = "parentForm";
-				window.open("user/NickCheckForm.jsp",
-						"chkForm", "width=500, height=300, resizable = no, scrollbars = no");	
-			}
-	   	   
-			// 닉네임 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.
-			function inputNickChk(){
-				document.fr.nickDuplication.value ="nickUncheck";
-			}
-		
-		function check(){
-		
-		var fr = document.fr;
-		
-		//아이디 공백제어
-		if(fr.userID.value == "" || fr.userID.value.length < 0){
-			alert("아이디를 입력하세요");
-			fr.userID.focus();
-			return false;
-		}
-		
-		if(fr.idDuplication.value != "idCheck"){
-			alert("아이디 중복체크를 해주세요");
-			return false;
-		}
+<link rel="stylesheet" href="${contextPath }/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="${contextPath }/css/joinForm.css" />
 
-		//비밀번호 공백제어
-		if(fr.userPass.value == "" || fr.userPass.value.length < 0){
-			alert("비밀번호를 입력하세요");
-			fr.userPass.focus();
-			return false;
-		}
-		
-		//비밀번호와 비밀번호확인 값 제어
-		if(fr.userPass2.value == "" || fr.userPass2.value.length < 0){
-			alert("비밀번호를 다시 입력하세요");
-			fr.userPass2.focus();
-			return false;
-		}
-		
-		if(fr.userPass.value != fr.userPass2.value){
-			alert("비밀번호가 일치하지 않습니다");
-			fr.userPass2.focus();
-			return false;
-		}
-		
-		// 아이디와 비밀번호 중복 제어
-		if(fr.userID.value == fr.userPass.value) {
-            alert("아이디와 비밀번호는 같을 수 없습니다");
-            fr.userPass.value = "";
-            fr.userPass2.value = "";
-            return false;
-        }
-		
-		//이름 공백제어
-		if(fr.userName.value == "" || fr.userName.value.length < 0){
-			alert("이름을 입력하세요");
-			fr.userName.focus();
-			return false;
-		}
-		if ($("#userName").val().length <= 1) {
-			alert("이름을 정확히 입력하세요");
-			return false;
-		}
-		//숫자 및 영문, 자음, 특수문자 사용제어
-		for (var i=0; i<$("#userName").val().length; i++)  { 
-		    var chk = $("#userName").val().substring(i,i+1); 
-
-		    if(chk.match(/[0-9]|[a-z]|[A-Z]/)) { 
-		    	alert("이름을 정확히 입력하세요");
-		        return false;
-		    }
-		    if(chk.match(/([^가-힣\x20])/i)){
-		    	alert("이름을 정확히 입력하세요");
-		        return false;
-		    }
-		    if($("#userName").val() == " "){
-		    	alert("이름을 정확히 입력하세요");
-		        return false;
-		    }
-		} 
-		
-		if(fr.userEmail.value != "" && fr.emailDuplication.value == "emailUncheck"){
-			alert("이메일 중복체크를 해주세요");
-			return false;
-		}
-		
-		 //이메일 형식제어
-		 var email = $('#userEmail').val();
-		 if(fr.userEmail.value != ""){
-		 var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-		 if(regex.test(email) === false){
-		  alert('잘못된 이메일 형식입니다.');
-		  $('#userEmail').focus();
-		  return false;
-			 } 
-		 } 
-		
-		//주소 공백제어
-		if(fr.postcode.value == "" || fr.postcode.value.length < 0){
-			alert("주소를 입력하세요");
-			fr.postcode.focus();
-			return false;
-		}
-		
-		if(fr.add1.value == "" || fr.add1.value.length < 0){
-			alert("주소를 입력하세요");
-			fr.add1.focus();
-			return false;
-		}
-		
-		if(fr.add2.value == "" || fr.add2.value.length < 0){
-			alert("주소를 입력하세요");
-			fr.add2.focus();
-			return false;
-		}
-		
-		if(fr.add3.value == "" || fr.add3.value.length < 0){
-			alert("상세주소를 입력하세요");
-			fr.add3.focus();
-			return false;
-		}
-
-		//전화번호 공백제어
-		if(fr.userPhone.value == "" || fr.userPhone.value.length < 0){
-			alert("전화번호를 입력하세요");
-			fr.userPhone.focus();
-			return false;
-		}
-		//전화번호 번호만 입력
-		 var phonenum = $('#userPhone').val();
-		 var regPhone = /(01[0|1|6|9|7])(\d{3}|\d{4})(\d{4}$)/g;
-		 if(!regPhone.test(phonenum)){
-		  alert('전화번호를 정확히 입력하세요');
-		  $('#userPhone').focus();
-		  return false;    
-		 }
-		
-		//닉네임 공백제어
-		if(fr.userNickName.value == "" || fr.userNickName.value.length < 0){
-			alert("닉네임을 입력하세요");
-			fr.userNickName.focus();
-			return false;
-		}
-		
-		if(fr.nickDuplication.value != "nickCheck"){
-			alert("닉네임 중복체크를 해주세요");
-			return false;
-		}
-	}
-	
-  </script>
-  
 </head>
 <body>
-  <h1>WebContent/user/user_join.jsp</h1>
-  
-  
-  <form action="./UserJoinAction.do" method="post" name="fr" onsubmit="return check();" enctype="multipart/form-data">
-    <table border="1">
-      <tr>
-      <!-- 아이디 중복체크, 아이디는 영문자과 숫자 4~10자만 -->
-        <td>아이디</td>
-        <td>
-          <input type="text" name="userID" id="userID" minlength=4 maxlength=10 onkeydown="inputIdChk()" placeholder="영문자와 숫자4~10자">
-          <input type="button" value="중복확인" onclick="openIdChk()">	
-		  <input type="hidden" name="idDuplication" value="idUncheck" >
-        </td>
-      </tr>
-      <tr>
-      <!-- 비밀번호 일치확인, 값은 8자~16자만, 아이디와 비밀번호는 불일치해야함 -->
-        <td>비밀번호</td>
-        <td>
-          <input type="password" name="userPass" id="pwd1" class="form-control" minlength=8 maxlength=16 placeholder="8~16자까지 입력가능">
-        </tr>
-        <tr>
-        <td>비밀번호 확인</td>
-        <td>
-          <input type="password" name="userPass2" id="pwd2" class="form-control" placeholder="한번 더 입력하세요">
-           <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
-           <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
-        </td>
-      </tr>
-      <tr>
-      <!-- 이름에는 한글문자만 입력되어야됨(특수문자,숫자제외), 한글문자 최소 2자이상 제어 -->
-        <td>이름</td>
-        <td>
-          <input type="text" name="userName" id="userName">
-        </td>
-      </tr>
-      <tr>
-      <!-- 이메일 선택사항, 입력시 중복체크  -->
-        <td>이메일</td>
-        <td>
-          <input type="email" name="userEmail" id="userEmail" onkeydown="inputEmailChk()">
-          <input type="button" value="중복확인" id="checkBtn" onclick="openEmailChk()" placeholder="선택사항" hidden>	
-		  <input type="hidden" name="emailDuplication" value="emailUncheck" >
-		  
-        </td>
-      </tr>
-      <tr>
-      <!-- 주소API 사용 -->
-        <td>주소</td>
-        <td>
-		  <input type="text" id="postcode" name="postcode" placeholder="우편번호" style="width:200px;font-size:15px;">
-	      <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-		  <input type="text" id="add1" name="add1" placeholder="도로명주소" style="width:360px;font-size:15px;">
-		  <input type="text" id="add2" name="add2" placeholder="지번주소" style="width:360px;font-size:15px;"><br>
-		  <span id="guide" style="color:#999;display:none"></span>
-		  <input type="text" id="add3" name="add3" placeholder="상세주소" style="width:360px;font-size:15px;">
-		  <input type="text" id="add4" name="add4" placeholder="참고항목" style="width:360px;font-size:15px;">
-        </td>
-      </tr>
-      <tr>
-      <!-- 전화번호 형식 제어 (숫자만)-->
-        <td>전화번호</td>
-        <td>
-          <input type="text" name="userPhone" id="userPhone" placeholder="숫자만 입력하세요">
-        </td>
-      </tr>
-      <tr>
-      <!-- 프로필사진 선택사항 -->
-        <td>프로필사진</td>
-        <td>
-          <input type="file" name="userProfile">
-        </td>
-      </tr>
-      <tr>
-      <!-- 닉네임 중복확인 -->
-        <td>닉네임</td>
-        <td>
-          <input type="text" name="userNickName" onkeydown="inputNickChk()">
-          <input type="button" value="중복확인" onclick="openNickChk()">	
-		  <input type="hidden" name="nickDuplication" value="nickUncheck" >
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <input type="button" value="취소" onclick="location.href='UserLogin.do'">
-          <input type="submit" value="가입하기">
-        </td>
-      </tr>
-    </table>
-  </form>
+	<div id="wrap"> 
+	<!-- 네비게이션 -->
+	<jsp:include page="../inc/nav.jsp" />
+	<!-- 네비게이션 -->
+	
+	<!-- @ subHeader Top area -->    
+	<div id="subVisual">
+	    <section id="subVisu" class="submenu-DOM_00000020100600">
+	        <h2 class="tit">회원가입</h2>
+	    </section>
+	    <section id="nav">
+	        <div class="navInner boxing">
+	            <div class="left">
+	                <ul>
+	                    <li class="home"><a href="${contextPath }/Main.do" title="홈"><img src="${contextPath }/img/sub/home.jpg" style="height: 22px; margin-top: 15px;"></a></li>
+						<li class="home">회원 관리 > </li>
+						<li class="depth2"><a href="${contextPath }/UserLogin.do" title="후기로 갑니다">회원가입 </a></li>
+	                </ul>
+	            </div>
+	        </div>
+	    </section>
+		<script src="${contextPath }/js/subjs.js"></script>
+	</div>
+    <!--// @ subHeader Top area -->
+
+	<div class ="container"> 
+	<script src="${contextPath }/js/join.js"></script>
+		<form action="./UserJoinAction.do" method="post" class="fr" name="fr" onsubmit="return check();" enctype="multipart/form-data">
+            <!-- 아이디 중복체크, 아이디는 영문자과 숫자 4~10자만 -->
+              <div class="incd">
+                <h3 class="join_title"><label for="userID">아이디</label></h3>
+                    <input type="text" name="userID" id="userID" class="int_id" maxlength=10 onkeydown="inputIdChk()" minlength="4" maxlength="10" placeholder="영문자와 숫자4~10자">
+                <span class="id_check">
+                    <input type="button" value="중복확인" class="ck_Btn" onclick="openIdChk()">	
+                </span>
+                <span class="box int_cl"></span>
+	  			<input type="hidden" name="idDuplication" value="idUncheck" >
+            </div>
+            <!-- 비밀번호 일치확인, 값은 8 ~ 16자, 아이디와 비밀번호는 불일치해야함 -->
+            <div class="incd">
+                <h3 class="join_title"><label for="int_pass">비밀번호</label></h3>
+                <input type="password" name="userPass" class="int" id="pwd1" minlength="8" maxlength=16 placeholder="8~16자까지 입력가능">
+            </div>
+            <div class="incd">
+                <h3 class="join_title"><label for="userPass2">비밀번호 재확인</label></h3>
+                    <input type="password" name="userPass2" class="int" id="pwd2"  minlength="8" maxlength=16 placeholder="한번 더 입력하세요">
+		         <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+		         <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+            </div>
+
+            <!-- 이름에는 한글문자만 입력되어야됨(특수문자,숫자제외), 한글문자 최소 2자이상 제어 -->
+            <div class="incd">
+                <h3 class="join_title"><label for="userName">이름</label></h3>
+                <span class="box int_name">
+                    <input type="text" id="userName" name="userName" class="int" maxlength="20">
+                </span>
+            </div>
+
+            <!-- 이메일 선택사항, 입력시 중복체크  -->
+            <div class="incd">
+                <h3 class="join_title"><label for="userEmail">본인확인 이메일</label></h3>
+                    <input type="email" class="int_id" name="userEmail" id="userEmail" onkeydown="inputEmailChk()">
+                <span class="box em_ck">
+			        <input type="button" value="중복확인" id="checkBtn" class="ck_Btn" onclick="openEmailChk()" placeholder="선택사항" >	
+                </span>
+			  		<input type="hidden" name="emailDuplication" value="emailUncheck" >
+            </div>
+
+			<!-- 주소API 사용 -->
+            <div class="incd">
+                <h3 class="join_title"><label for="postcode">주소</label></h3>
+                 <div class="addr_box">
+                	<input type="text" id="postcode" name="postcode" placeholder="우편번호" maxlength="20" readonly>
+                <span class="addr_ck">
+                    <input type="button" onclick="execDaumPostcode()" class="ck_Btn" value="우편번호 찾기" ><br>
+                </span>
+                <span class="box int_cl"></span>
+                <span class="add_box">
+                    <input type="text" id="add1" name="add1" class="int" placeholder="도로명주소" readonly>
+                </span>
+                <span class="add_box">
+					<input type="text" id="add2" name="add2" class="int" placeholder="지번주소" readonly><br>
+                </span>
+                <span class="add_box">
+					<input type="text" id="add3" name="add3" class="int" placeholder="상세주소">
+                </span>
+					<input type="hidden" id="add4" name="add4" class="int" placeholder="참고항목" readonly>
+					<span id="guide" style="color:#999;display:none"></span>
+            </div>
+            </div>
+			<script src="${contextPath }/js/postCode.js"></script>
+
+            <!-- 전화번호 형식 제어 (숫자만)-->
+            <div class="incd">
+                <h3 class="join_title"><label for="userPhone">휴대전화</label></h3>
+                <span class="box int_ot">
+                    <input type="text" name="userPhone" id="userPhone" class="int" placeholder="숫자만 입력하세요">
+				</span>
+            </div>
+            
+            <!-- 프로필사진 선택사항 -->
+            <div class="incd">
+				<h3 class="join_title">
+					<label for="userProfile" class="optional">프로필
+						<span>(선택)
+						</span>
+					</label>
+					<label class="up_Btn" for="userProfile" >
+					  업로드
+					</label>
+				</h3>
+				<input type="file" name="userProfile" id="userProfile" style="display: none;">
+			
+			<span class="box int_cl"></span>
+		</div>
+
+			<!-- 닉네임 -->
+            <div>
+                <h3 class="join_title"><label for="userNickName">닉네임</label></h3>
+                <span class="box int_id">
+                    <input type="text" name="userNickName" class="int_id" onkeydown="inputNickChk()">
+                </span>
+                <span class="box int_ck">
+			        <input type="button" value="중복확인" class="ck_Btn" onclick="openNickChk()">	
+                </span>
+                <span class="box int_cl"></span>
+			  	<input type="hidden" name="nickDuplication" value="nickUncheck" >
+            </div>
+            <br>
+            
+            <div class="incd">
+            	<h3 class="join_title"><label for="provision">회원가입약관</label></h3>
+            	<div id="provision">
+            		<textarea class="form-control" rows="8" style="resize:none; width:95%" readonly>약관동의
+     		제 1 조 (목적)
+1. 본 약관은 GTB 사이트가 제공하는 모든 서비스(이하 "서비스")의 이용조건 및 절차, 이용자와 GTB 사이트의 권리, 의무, 책임사항과 기타 필요한 사항을 규정함을 목적으로 합니다.
+제 2 조 (약관의 효력과 변경)
+1. GTB 사이트는 귀하가 본 약관 내용에 동의하는 경우 GTB 사이트의 서비스 제공 행위 및 귀하의 서비스 사용 행위에 본 약관이 우선적으로 적용됩니다.
+2. GTB 사이트는 본 약관을 사전 고지 없이 변경할 수 있고 변경된 약관은 GTB 사이트 내에 공지하거나 e-mail을 통해 회원에게 공지하며, 공지와 동시에 그 효력이 발생됩니다.
+이용자가 변경된 약관에 동의하지 않는 경우, 이용자는 본인의 회원등록을 취소 (회원탈락)할 수 있으며 계속 사용의 경우는 약관 변경에 대한 동의로 간주 됩니다.
+제 3 조 (약관 외 준칙)
+1. 본 약관에 명시되지 않은 사항은 전기통신기본법, 전기통신사업법, 정보통신윤리위원회심의규정, 정보통신 윤리강령, 프로그램보호법 및 기타 관련 법령의 규정에 의합니다.
+제 4 조 (용어의 정의)
+본 약관에서 사용하는 용어의 정의는 다음과 같습니다.
+
+1. 이용자 : 본 약관에 따라 GTB 사이트가 제공하는 서비스를 받는 자.
+2. 가입 : GTB 사이트가 제공하는 신청서 양식에 해당 정보를 기입하고, 본 약관에 동의하여 서비스 이용계약을 완료시키는 행위.
+3. 회원 : GTB 사이트에 개인 정보를 제공하여 회원 등록을 한 자로서 GTB 사이트가 제공하는 서비스를 이용할 수 있는 자.
+4. 비밀번호 : 이용자와 회원ID가 일치하는지를 확인하고 통신상의 자신의 비밀보호를 위하여 이용자 자신이 선정한 문자와 숫자의 조합.
+5. 탈퇴 : 회원이 이용계약을 종료시키는 행위.
+            		</textarea>
+            		<div class="radio">
+            			<label>
+            				<input type="radio" id="provisionYn" name="provisionYn" value="Y" checked>
+            				동의합니다.
+            			</label>
+            		</div>
+            		<div class="radio">
+            			<label>
+            				<input type="radio" id="provisionYn" name="provisionYn" value="N">
+            				동의하지 않습니다.
+            			</label>
+            		</div>
+            	</div>
+            </div>
+            
+            <div class="incd">
+            	<h3 class="join_title"><label for="memberInfo">개인정보취급방침</label></h3>
+            	<div id="memberInfo">
+            		<textarea rows="8" class="form-control" style="resize:none; width:95%" readonly>개인정보의 항목 및 수집 방법
+가. 수집하는 개인정보 항목
+1) 필수항목
+① 인터넷 회원가입: 이름, 본인확인기관을 통한 본인인증 결과 값(CI, 마이핀, 생년월일, 성별, 내외국인 정보), 아이디, 비밀번호, 휴대폰, 이메일, 14세 미만 아동의 경우 법정대리인 이름, 법정 생년월일, 휴대폰번호 마케팅활용동의
+② 호텔서비스 이용 시 : 정산내역, 쿠폰사용내역, 불량 이용 기록
+2) 선택항목
+① 인터넷 회원가입: 우편물 수령지, 주소, 전화, 직장인 경우(직장명, 직위, 부서), 생년월일, 결혼기념일, 영문명, 닉네임, 사진
+② 호텔 방문 시 : 차량번호, 차량종류, 화상정보(카메라, CCTV에 의한 촬영, 실시간 날씨 정보 웹캠)
+3) 서비스 이용과정에서 아래와 같은 정보들이 자동으로 생성되어 수집 될 수 있는 항목: IP Address, 쿠키
+4) 유료 서비스 이용 과정 시 수집하는 정보: 신용카드(카드사명, 카드번호), 휴대폰(휴대폰번호, 통신사, 결제승인번호), 계좌이체(은행명, 계좌번호)
+5) 수집하는 개인정보는 서비스 제공에 필요한 최소한의 정보만으로 한정되며, 회원(고객)의 기본적 인권을 침해할 우려가 있는 민감한 개인정보(인종, 종교, 사상, 출신지, 본적지, 정치적 성향 및 범죄기록, 건강상태 및 성생활 등)는 수집하지 않습니다.
+            		</textarea>
+            		<div class="radio">
+            			<label>
+            				<input type="radio" id="memberInfoYn" name="memberInfoYn" value="Y" checked>
+            				동의합니다.
+            			</label>
+            		</div>
+            		<div class="radio">
+            			<label>
+            				<input type="radio" id="memberInfoYn" name="memberInfoYn" value="N">
+            				동의하지 않습니다.
+            			</label>
+            		</div>
+            	</div>
+            </div>
+
+            <!-- 가입 버튼-->
+            <div class="btn_area">
+                <button type="submit" id="btnJoin"  >
+                    <span>가입하기</span>
+                </button>
+            
+            <!-- 취소 버튼-->
+                <button type="button" id="btnJoin" onclick="history.back();" >
+                    <span>취소하기</span>
+                </button>
+            </div>
+		</form>
+	</div>
+</div>
+<a href="#" class="viewTop" style="background-size: 40px">Top</a>
+<!-- footer -->
+<jsp:include page="../inc/footer.jsp" />
+<!-- footer -->
 </body>
 
-	<script>
-    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-    function execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
-
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('postcode').value = data.zonecode;
-                document.getElementById("add1").value = roadAddr;
-                document.getElementById("add2").value = data.jibunAddress;
-                
-                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
-                    document.getElementById("add4").value = extraRoadAddr;
-                } else {
-                    document.getElementById("add4").value = '';
-                }
-
-                var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    guideTextBox.style.display = 'block';
-
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                    guideTextBox.style.display = 'block';
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
-            }
-        }).open();
-    }
-    
- 	
-    
-</script>
+	
 </html>

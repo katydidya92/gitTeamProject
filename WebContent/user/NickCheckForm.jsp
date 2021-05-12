@@ -6,6 +6,7 @@
 	<title>닉네임 중복 체크</title>
 	
 	<style type="text/css">
+  			
 		#wrap {
 			width: 490px;
 			text-align :center;
@@ -102,16 +103,20 @@
 	
 </head>
 <body onload="pValue()">
+
 <div id="wrap">
 	<br>
+	<fieldset>
 	<b><font size="4" color="gray">닉네임 중복체크</font></b>
 	<hr size="1" width="460">
 	<br>
 	<div id="chk">
+	  
 		<form id="checkForm">
 			<input type="text" name="userNickName" id="userNickName">
 			<input type="button" value="중복확인" onclick="nickCheck()">
 		</form>
+		</fieldset>
 		<div id="msg"></div>
 		<br>
 		<input id="cancelBtn" type="button" value="취소" onclick="window.close()"><br>

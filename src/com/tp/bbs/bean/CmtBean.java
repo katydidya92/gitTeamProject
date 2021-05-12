@@ -4,16 +4,16 @@ import java.sql.Timestamp;
 
 public class CmtBean {
 	private int cmtID;
-	private String userNickName;
+	private String userID;
 	private String cmt_content;
 	private int bbsID;
+	private int cmt_ref;
 	private int cmt_seq;
 	private int cmt_lev;
 	private int cmt_available;
 	private int bbs_category;
 	private Timestamp cmt_date;
 	private String ip;
-	private int likeID;
 
 	public int getCmtID() {
 		return cmtID;
@@ -23,12 +23,12 @@ public class CmtBean {
 		this.cmtID = cmtID;
 	}
 
-	public String getUserNickName() {
-		return userNickName;
+	public String getUserID() {
+		return userID;
 	}
 
-	public void setUserNickName(String userNickName) {
-		this.userNickName = userNickName;
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 
 	public String getCmt_content() {
@@ -45,6 +45,14 @@ public class CmtBean {
 
 	public void setBbsID(int bbsID) {
 		this.bbsID = bbsID;
+	}
+
+	public int getCmt_ref() {
+		return cmt_ref;
+	}
+
+	public void setCmt_ref(int cmt_ref) {
+		this.cmt_ref = cmt_ref;
 	}
 
 	public int getCmt_seq() {
@@ -95,21 +103,11 @@ public class CmtBean {
 		this.ip = ip;
 	}
 
-	public int getLikeID() {
-		return likeID;
-	}
-
-	public void setLikeID(int likeID) {
-		this.likeID = likeID;
-	}
-
 	@Override
 	public String toString() {
-		return "CmtBean [cmtID=" + cmtID + ", userNickName=" + userNickName + ", cmt_content=" + cmt_content
-				+ ", bbsID=" + bbsID + ", cmt_seq=" + cmt_seq + ", cmt_lev=" + cmt_lev + ", cmt_available="
-				+ cmt_available + ", bbs_category=" + bbs_category + ", cmt_date=" + cmt_date + ", ip=" + ip
-				+ ", likeID=" + likeID + "]";
+		return "CmtBean [cmtID=" + cmtID + ", userID=" + userID + ", cmt_content=" + cmt_content + ", bbsID=" + bbsID
+				+ ", cmt_ref=" + cmt_ref + ", cmt_seq=" + cmt_seq + ", cmt_lev=" + cmt_lev + ", cmt_available="
+				+ cmt_available + ", bbs_category=" + bbs_category + ", cmt_date=" + cmt_date + ", ip=" + ip + "]";
 	}
-	
-	
+
 }

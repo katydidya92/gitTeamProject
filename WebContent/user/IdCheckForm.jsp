@@ -58,9 +58,6 @@
 			if(!id) {
 				alert("아이디를 입력하지 않았습니다.");
 				return false;
-			} else if ((id < "0" || id > "9") && (id < "A" || id > "Z") && (id < "a" || id > "z")){
-				alert("한글 및 특수문자는 아이디로 사용하실 수 없습니다.");
-				return false;
 			} else {
 				var param="userID="+id
 				httpRequest = getXMLHttpRequest();

@@ -2,6 +2,7 @@ package com.tp.users.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.tp.location.action.LocationDAO;
 
@@ -15,14 +16,20 @@ public class LtListAction implements Action {
 		// 한글데이터 처리 
 		request.setCharacterEncoding("UTF-8");
 		
+		HttpSession session = request.getSession();
+		String userID = (String)session.getAttribute("userID");
+		
 		// 로케이션 정보 출력
 		LocationDAO ldao = new LocationDAO();
 		
 		// 로케이션 정보
-        request.setAttribute("locationList", ldao.getLocationList("123"));
+        request.setAttribute("locationList", ldao.getLocationList(userID));
 		
+        // 로케이션 카운트  //@@@@@@@@@@@추가필요
+        request.setAttribute("locationCount", ldao.getLocationCount(userID));
+        
         // 로케이션 정보 확인
-        System.out.println("LtListAction : " + ldao.getLocationList("123"));
+        System.out.println("LtListAction : " + ldao.getLocationList(userID));
         
 		// 페이지 이동
 		ActionForward forward = new ActionForward();

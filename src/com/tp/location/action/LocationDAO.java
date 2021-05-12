@@ -11,7 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.tp.bbs.db.BbsBean;
+import com.tp.bbs.bean.BbsBean;
 import com.tp.location.bean.LocationBean;
 
 public class LocationDAO {
@@ -70,16 +70,18 @@ public class LocationDAO {
 				LocationID = 1;
 			}
 
-			sql = "insert into tp_locations(locationID, location_spot, userID, location_date)" + "values(?,?,?,now())";
-
+			sql = "insert into tp_locations(locationID, location_name, location_spot, userID, location_date)" 
+					+ "values(?,?,?,?,now())";
+			
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, LocationID);
-			pstmt.setString(2, lb.getLocation_spot()); // user.getUserID()
-			pstmt.setString(3, lb.getUserID()); // user.getUserID()
+			pstmt.setString(2, lb.getLocation_name());
+			pstmt.setString(3, lb.getLocation_spot()); // user.getUserID()
+			pstmt.setString(4, lb.getUserID()); // user.getUserID()
 
 			pstmt.executeUpdate();
-
+			System.out.println("userID : "+lb.getUserID());
 			System.out.println("DAO : 장소 등록 완료");
 		} catch (Exception e) {
 			System.out.println("insertLocation 메소드 내부에서 오류 : " + e);
@@ -94,7 +96,6 @@ public class LocationDAO {
 		try {
 			con = getCon();
 			sql = "select * from tp_locations where userID = ? order by locationID desc";
-			// limit offset(시작점), row_count(출력수)
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, userID);
@@ -103,16 +104,17 @@ public class LocationDAO {
 			while (rs.next()) {
 
 				LocationBean lb = new LocationBean();
-
+				
+				lb.setLocation_name(rs.getString("location_name"));
 				lb.setLocation_spot(rs.getString("location_spot"));
 				lb.setUserID(rs.getString("userID"));
-
+				
 				lbList.add(lb);
 			}
 			System.out.println(lbList);
-			System.out.println("DAO : 게시판리스트 학인");
+			System.out.println("DAO : 게시판리스트 확인");
 		} catch (Exception e) {
-			System.out.println("getBbsList 메소드 내부에서 오류 : " + e);
+			System.out.println("getLocationList 메소드 내부에서 오류 : " + e);
 		} finally {
 			closeDB();
 		}

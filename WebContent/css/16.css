@@ -60,72 +60,19 @@ p.tit_sub{font-size:17px;margin-bottom:20px}
 /* subVisu */
 #subVisu{/* margin-top: 82px; */height: 320px;padding-top: 158px;}
 #subVisu .tit{font-size:55px;text-align:center;color:white}
-.submenu-01,.submenu-DOM_00000020100100 {background: url(/images/sub/subvisu-01.jpg) no-repeat center top;background-size: cover;}
-.submenu-02,.submenu-DOM_00000020100200 {background: url(/images/sub/subvisu-02.jpg) no-repeat center top;background-size: cover;}
-.submenu-03,.submenu-DOM_00000020100300 {background: url(/images/sub/subvisu-03.jpg) no-repeat center top;background-size: cover;}
-.submenu-04,.submenu-DOM_00000020100400 {background: url(/images/sub/subvisu-04.jpg) no-repeat center top;background-size: cover;}
-.submenu-05,.submenu-DOM_00000020100500 {background: url(/images/sub/subvisu-05.jpg) no-repeat center top;background-size: cover;}
-.submenu-06,.submenu-DOM_00000020100600 {background: url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
-.submenu-06,.submenu-DOM_00000020100700{background:  url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
-.submenu-06,.submenu-DOM_00000020100800 {background: url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
+.submenu-01,.submenu-DOM_00000020100100 {background: url(../img/sub/subvisu-01.JPG) no-repeat center center;background-size: cover;}
+.submenu-02,.submenu-DOM_00000020100200 {background: url(../img/sub/subvisu-02.JPG) no-repeat center top;background-size: cover;}
+.submenu-03,.submenu-DOM_00000020100300 {background: url(../img/sub/subvisu-03.JPG) no-repeat center top;background-size: cover;}
+.submenu-04,.submenu-DOM_00000020100400 {background: url(../img/sub/subvisu-04.JPG) no-repeat center top;background-size: cover;}
+.submenu-05,.submenu-DOM_00000020100500 {background: url(../img/sub/subvisu-05.JPG) no-repeat center top;background-size: cover;}
+.submenu-06,.submenu-DOM_00000020100600 {background: url(../img/sub/subvisu-06.JPG) no-repeat center top;background-size: cover;}
+.submenu-06,.submenu-DOM_00000020100700{background:  url(../img/sub/subvisu-07.JPG) no-repeat center top;background-size: cover;}
+.submenu-06,.submenu-DOM_00000020100800 {background: url(../img/sub/subvisu-08.JPG) no-repeat center top;background-size: cover;}
 .submenu-01,.submenu-DOM_00000020100900 {background: url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
 .submenu-07,.submenu-DOM_0000002020 {background: url(/images/sub/subvisu-07.jpg) no-repeat center top;background-size: cover;}
 .submenu-08,.submenu-DOM_0000002030 {background: url(/images/sub/subvisu-12.jpg) no-repeat center top;background-size: cover;}
 .submenu-09,.submenu-DOM_0000002040 {background: url(/images/sub/subvisu-10.jpg) no-repeat center top;background-size: cover;}
 .submenu-10,.submenu-DOM_0000002050 {background: url('../img/main/login.jpg') no-repeat center top;background-size: cover;}
-
-
-/*en*/
-.submenu-01,.submenu-DOM_00000030100100 {background: url(/images/sub/subvisu-01.jpg) no-repeat center top;background-size: cover;}
-.submenu-02,.submenu-DOM_00000030100200 {background: url(/images/sub/subvisu-02.jpg) no-repeat center top;background-size: cover;}
-.submenu-03,.submenu-DOM_00000030100300 {background: url(/images/sub/subvisu-03.jpg) no-repeat center top;background-size: cover;}
-.submenu-04,.submenu-DOM_00000030100400 {background: url(/images/sub/subvisu-04.jpg) no-repeat center top;background-size: cover;}
-.submenu-05,.submenu-DOM_00000030100500 {background: url(/images/sub/subvisu-05.jpg) no-repeat center top;background-size: cover;}
-.submenu-06,.submenu-DOM_00000030100600 {background: url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
-.submenu-06,.submenu-DOM_00000030100700 {background: url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
-.submenu-07,.submenu-DOM_0000003020 {background: url(/images/sub/subvisu-07.jpg) no-repeat center top;background-size: cover;}
-.submenu-08,.submenu-DOM_0000003030 {background: url(/images/sub/subvisu-12.jpg) no-repeat center top;background-size: cover;}
-.submenu-09,.submenu-DOM_0000003040 {background: url(/images/sub/subvisu-09.jpg) no-repeat center top;background-size: cover;}
-.submenu-10,.submenu-DOM_0000003050 {background: url(/images/sub/subvisu-10.jpg) no-repeat center top;background-size: cover;}
-
-/*ja*/
-.submenu-01,.submenu-DOM_00000040100100 {background: url(/images/sub/subvisu-01.jpg) no-repeat center top;background-size: cover;}
-.submenu-02,.submenu-DOM_00000040100200 {background: url(/images/sub/subvisu-02.jpg) no-repeat center top;background-size: cover;}
-.submenu-03,.submenu-DOM_00000040100300 {background: url(/images/sub/subvisu-03.jpg) no-repeat center top;background-size: cover;}
-.submenu-04,.submenu-DOM_00000040100400 {background: url(/images/sub/subvisu-04.jpg) no-repeat center top;background-size: cover;}
-.submenu-05,.submenu-DOM_00000040100500 {background: url(/images/sub/subvisu-05.jpg) no-repeat center top;background-size: cover;}
-.submenu-06,.submenu-DOM_00000040100600 {background: url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
-.submenu-06,.submenu-DOM_00000040100700 {background: url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
-.submenu-07,.submenu-DOM_0000004020 {background: url(/images/sub/subvisu-07.jpg) no-repeat center top;background-size: cover;}
-.submenu-08,.submenu-DOM_0000004030 {background: url(/images/sub/subvisu-12.jpg) no-repeat center top;background-size: cover;}
-.submenu-09,.submenu-DOM_0000004040 {background: url(/images/sub/subvisu-09.jpg) no-repeat center top;background-size: cover;}
-.submenu-10,.submenu-DOM_0000004050 {background: url(/images/sub/subvisu-10.jpg) no-repeat center top;background-size: cover;}
-
-/*zhs*/
-.submenu-01,.submenu-DOM_00000050100100 {background: url(/images/sub/subvisu-01.jpg) no-repeat center top;background-size: cover;}
-.submenu-02,.submenu-DOM_00000050100200 {background: url(/images/sub/subvisu-02.jpg) no-repeat center top;background-size: cover;}
-.submenu-03,.submenu-DOM_00000050100300 {background: url(/images/sub/subvisu-03.jpg) no-repeat center top;background-size: cover;}
-.submenu-04,.submenu-DOM_00000050100400 {background: url(/images/sub/subvisu-04.jpg) no-repeat center top;background-size: cover;}
-.submenu-05,.submenu-DOM_00000050100500 {background: url(/images/sub/subvisu-05.jpg) no-repeat center top;background-size: cover;}
-.submenu-06,.submenu-DOM_00000050100600 {background: url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
-.submenu-06,.submenu-DOM_00000050100700 {background: url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
-.submenu-07,.submenu-DOM_0000005020 {background: url(/images/sub/subvisu-07.jpg) no-repeat center top;background-size: cover;}
-.submenu-08,.submenu-DOM_0000005030 {background: url(/images/sub/subvisu-12.jpg) no-repeat center top;background-size: cover;}
-.submenu-09,.submenu-DOM_0000005040 {background: url(/images/sub/subvisu-09.jpg) no-repeat center top;background-size: cover;}
-.submenu-10,.submenu-DOM_0000005050 {background: url(/images/sub/subvisu-10.jpg) no-repeat center top;background-size: cover;}
-
-/*zht*/
-.submenu-01,.submenu-DOM_00000060100100 {background: url(/images/sub/subvisu-01.jpg) no-repeat center top;background-size: cover;}
-.submenu-02,.submenu-DOM_00000060100200 {background: url(/images/sub/subvisu-02.jpg) no-repeat center top;background-size: cover;}
-.submenu-03,.submenu-DOM_00000060100300 {background: url(/images/sub/subvisu-03.jpg) no-repeat center top;background-size: cover;}
-.submenu-04,.submenu-DOM_00000060100400 {background: url(/images/sub/subvisu-04.jpg) no-repeat center top;background-size: cover;}
-.submenu-05,.submenu-DOM_00000060100500 {background: url(/images/sub/subvisu-05.jpg) no-repeat center top;background-size: cover;}
-.submenu-06,.submenu-DOM_00000060100600 {background: url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
-.submenu-06,.submenu-DOM_00000060100700 {background: url(/images/sub/subvisu-06.jpg) no-repeat center top;background-size: cover;}
-.submenu-07,.submenu-DOM_0000006020 {background: url(/images/sub/subvisu-07.jpg) no-repeat center top;background-size: cover;}
-.submenu-08,.submenu-DOM_0000006030 {background: url(/images/sub/subvisu-12.jpg) no-repeat center top;background-size: cover;}
-.submenu-09,.submenu-DOM_0000006040 {background: url(/images/sub/subvisu-09.jpg) no-repeat center top;background-size: cover;}
-.submenu-10,.submenu-DOM_0000006050 {background: url(/images/sub/subvisu-10.jpg) no-repeat center top;background-size: cover;}
 
 @media (max-width: 640px){
 
@@ -140,12 +87,11 @@ p.tit_sub{font-size:17px;margin-bottom:20px}
 #nav ul li{float:left; }
 #nav .left ul{/*overflow:hidden*/}
 #nav .left ul li{color:#9c9c9c;position:relative;padding: 0 11px;position:relative}
-#nav .left ul li.home{padding-left:30px;background: url(/images/sub/home.jpg) 0px center no-repeat;}
-#nav .left ul li:after{content:'';display:block;background:url(/images/sub/homenav.jpg) no-repeat;top: 22px;right: -7px;width: 10px;height: 10px;position: absolute;}
 #nav .left ul li a{color:#545454;font-weight:700}
 #nav .left ul li.depth2 {color:black; font-weight: 700;}
 #nav .left ul li.depth2 a{color:black}
 #nav .left ul li.depth2:after{display:none}
+#nav .left ul li .home {padding-left: 30; background: url(../img/sub/home.jpg) opx center no-repeat;}
 
 #nav .right{width: 162px;position:relative;}
 #nav .right ul{width:162px;/*overflow: hidden;*/}
@@ -164,7 +110,6 @@ padding: 10px;
 #nav #naviSNS:before {content:"";display:block;position:absolute;top: -8px;right: 73px;width: 14px;height: 9px;background: url(/images/sub/navisns_arr.png) no-repeat;}
 #nav #naviSNS .iconset {/* display: inline-block; */float: left;width: 36px;height: 36px;font-size:0;/* line-height: 30px; */}
 #nav #naviSNS .iconset:first-child {margin-left:0;}
-#nav #naviSNS a{background: url(/images/sub/icon-snsall.png) no-repeat;}
 #nav #naviSNS .fb {background-position: -0px 0px;}
 #nav #naviSNS .tw {background-position: -35px -0px;}
 #nav #naviSNS .bl {background-position: -70px 0px;}
@@ -176,7 +121,6 @@ padding: 10px;
 #nav{/* padding:0 5%; */margin-bottom: 20px;}
 #nav .right{/*display:none*/position: absolute;right: 0;width: 54px;}
 #nav .left ul li {font-size:14px;;text-overflow: ellipsis;overflow: hidden;white-space: nowrap; padding-left:5px;}
-#nav .left ul li.home{padding-left:43px;background: url(/images/sub/home.jpg) 15px center no-repeat;}
 #nav .left ul li:after{right:-4px}
 html.en #nav .left ul li{width: 30%;padding-left: 0;}
 html.en #nav .left ul li.home{padding-left: 39px;width: 38%;}
@@ -189,8 +133,6 @@ html.en #nav .left ul li.home{padding-left: 39px;width: 38%;}
 .fesL #section1 .slider{}
 .fesL #section1 .slider > div img{width:100%}
 .fesL #section1 .bx-controls-direction a{position:absolute;top: calc(50% - 70px);width:66px;height:139px;font-size: 0;}
-.fesL #section1 .bx-controls-direction a.bx-prev{left:0;background: url(/images/sub/sub05_btnL.png) no-repeat;}
-.fesL #section1 .bx-controls-direction a.bx-next{right:0;background: url(/images/sub/sub05_btnR.png) no-repeat;}
 .fesL #section1 .bx-pager {display:none}
 
 .fesL #section1 .pyeng{overflow: hidden;height: 68px;border: 1px solid #eae2df;/* padding: 16px; */background-color: #f6f6f6;border-top: 0;}
@@ -228,9 +170,6 @@ html.en #nav .left ul li.home{padding-left: 39px;width: 38%;}
 position: relative;
 padding-left: 45px;
 }
-/*
-.fesL #section2 .tab li.review:before {width: 24px;height: 24px;content:'';background:url(/images/common/icon_exReview_NT.png)no-repeat;position: absolute;left: 39px;top: 16px;}
-*/
 .fesL #section2 .tab li.review:before {width: 24px;height: 24px;content:'';}
 
 .fesL #section2 .tab li:hover{color:black}

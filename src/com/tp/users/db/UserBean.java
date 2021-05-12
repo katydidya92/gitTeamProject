@@ -13,6 +13,7 @@ public class UserBean {
 	private String userNickName;
 	private Timestamp reg_date;
 	private int isAdmin;
+	private int isMember;
 
 	public String getUserID() {
 		return userID;
@@ -94,11 +95,20 @@ public class UserBean {
 		this.isAdmin = isAdmin;
 	}
 
+	public int getIsMember() {
+		return isMember;
+	}
+
+	public void setIsMember(int isMember) {
+		this.isMember = isMember;
+	}
+
 	@Override
 	public String toString() {
 		return "UserBean [userID=" + userID + ", userPass=" + userPass + ", userName=" + userName + ", userEmail="
 				+ userEmail + ", userAddr=" + userAddr + ", userPhone=" + userPhone + ", userProfile=" + userProfile
-				+ ", userNickName=" + userNickName + ", reg_date=" + reg_date + ", isAdmin=" + isAdmin + "]";
+				+ ", userNickName=" + userNickName + ", reg_date=" + reg_date + ", isAdmin=" + isAdmin + ", isMember="
+				+ isMember + "]";
 	}
 
 }

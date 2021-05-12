@@ -6,6 +6,29 @@
 	</header>
 	<body>
 		<items>
+		    <item>
+				<MAIN_TITLE>무구희(無垢喜)</MAIN_TITLE>
+				<LNG>128.95245</LNG>
+				<UC_SEQ>40</UC_SEQ>
+				<CNTCT_TEL>0507-1426-2727</CNTCT_TEL>
+				<MAIN_IMG_NORMAL>img/food/mogu.PNG
+				</MAIN_IMG_NORMAL>
+				<ITEMCNTNTS>전포동 신상 맛집. 1인 샤브샤브로 혼자서도 즐길 수 있는 샤브샤브 식당이다. 간소한 메뉴 구성으로 고민없이 고를 수 있는 장점이 있고
+				샤브샤브 식사 후 후식으로 칼구수사리나 계란죽을 먹으면 아주 만족스럽게 식사를 마무리할 수 있다.</ITEMCNTNTS>
+				<PLACE>무구희(無垢喜)</PLACE>
+				<SUBTITLE />
+				<ADDR2 />
+				<USAGE_DAY_WEEK_AND_TIME>매일 11:30~21:00 Last Order 15:00/20:00, Break Time 15:00-17:00
+				</USAGE_DAY_WEEK_AND_TIME>
+				<GUGUN_NM>부산진구</GUGUN_NM>
+				<ADDR1>부산광역시 부산진구 전포대로224번길 11</ADDR1>
+				<RPRSNTV_MENU>무구샤브, 곁들이는 칼국수, 계란죽</RPRSNTV_MENU>
+				<HOMEPAGE_URL />
+				<TITLE>무구희(無垢喜)</TITLE>
+				<MAIN_IMG_THUMB>img/food/mogu.PNG
+				</MAIN_IMG_THUMB>
+				<LAT>35.177387</LAT>
+			</item>
 			<item>
 				<MAIN_TITLE>만드리곤드레밥</MAIN_TITLE>
 				<LNG>128.95245</LNG>

@@ -9,6 +9,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.tp.bbs.bean.CmtBean;
+
 public class UserDAO {
 
 	Connection con = null;
@@ -44,13 +46,13 @@ public class UserDAO {
 		}
 	}
 
-	// insertUser(ub)
+	// 회원가입 처리 / insertUser(ub)
 	public void insertUser(UserBean ub) {
 		try {
 			con = getCon();
 			sql = "insert into tp_users(userID,userPass,userName,userEmail,userAddr,"
-					+ "userPhone,userProfile,userNickName,reg_date,isAdmin) " + "values(?,?,?,?,?,?,?,?,?,?)";
-			// reg_date는 받아 오는 방식 보다는 now 라는 함수를 사용하는 건 어떨까요?
+					+ "userPhone,userProfile,userNickName,reg_date,isAdmin, isMember) "
+					+ "values(?,?,?,?,?,?,?,?,now(),?,0)";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, ub.getUserID());
@@ -61,8 +63,7 @@ public class UserDAO {
 			pstmt.setString(6, ub.getUserPhone());
 			pstmt.setString(7, ub.getUserProfile());
 			pstmt.setString(8, ub.getUserNickName());
-			pstmt.setTimestamp(9, ub.getReg_date());
-			pstmt.setInt(10, ub.getIsAdmin());
+			pstmt.setInt(9, ub.getIsAdmin());
 
 			pstmt.executeUpdate();
 
@@ -77,17 +78,11 @@ public class UserDAO {
 
 	}
 
-	// duplicateIdCheck(id)
+	// 아이디 중복 체크 / duplicateIdCheck(id)
 	public int duplicateIdCheck(String id) {
 		int result = -1;
 		try {
 			con = getCon();
-
-			/*
-			 * StringBuffer query = new StringBuffer();
-			 * query.append("select userID from tp_users where userID=?"); pstmt
-			 * = con.prepareStatement(query.toString());
-			 */
 
 			sql = "select userID from tp_users where userID=?";
 			pstmt = con.prepareStatement(sql);
@@ -110,7 +105,7 @@ public class UserDAO {
 		return result;
 	}
 
-	// duplicateEmailCheck(userEmail)
+	// 이메일 중복 체크 / duplicateEmailCheck(userEmail)
 	public int duplicateEmailCheck(String userEmail) {
 		int result = -1;
 		try {
@@ -137,7 +132,7 @@ public class UserDAO {
 		return result;
 	}
 
-	// duplicateNickCheck(userNickName)
+	// 닉네임 중복 체크 / duplicateNickCheck(userNickName)
 	public int duplicateNickCheck(String userNickName) {
 		int result = -1;
 		try {
@@ -164,7 +159,53 @@ public class UserDAO {
 		return result;
 	}
 
-	// loginCheck(ub)
+	// 회원가입 상태 체크 / joinCheck(userEmail) / 미완
+	public int joinEmailCheck(String userID) {
+		int result = -1;
+		try {
+			con = getCon();
+
+			sql = "select userEmail from tp_users where userID=?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, userID);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				result = 0; 
+			} else {
+				result = 1; // 사용가능
+			}
+			System.out.println("이메일 : " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
+	
+	// 회원가입 상태 체크 / joinCheck(userEmail)
+	public void joinCheck(String userID) {
+		try {
+			con = getCon();
+			
+			sql = "update tp_users set isMember = 1 where userID = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, userID);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+
+	// 로그인 처리 /loginCheck(ub)
 	public int loginCheck(UserBean ub) {
 		int result = -1;
 		try {
@@ -195,11 +236,9 @@ public class UserDAO {
 		return result;
 	}
 
-	// getUser(id)
+	// 유저 정보 가져오기 / getUser(id)
 	public UserBean getUser(String userID) {
-
 		UserBean ub = null;
-
 		try {
 			con = getCon();
 
@@ -213,6 +252,7 @@ public class UserDAO {
 				ub = new UserBean();
 
 				ub.setUserID(rs.getString("userID"));
+				ub.setUserNickName(rs.getString("userNickName"));
 				ub.setUserPass(rs.getString("userPass"));
 				ub.setUserEmail(rs.getString("userEmail"));
 				ub.setUserAddr(rs.getString("userAddr"));
@@ -220,6 +260,9 @@ public class UserDAO {
 				ub.setUserNickName(rs.getString("userNickName"));
 				ub.setUserPhone(rs.getString("userPhone"));
 				ub.setUserProfile(rs.getString("userProfile"));
+				ub.setIsAdmin(rs.getInt("isAdmin"));
+				ub.setIsMember(rs.getInt("isMember"));
+				ub.setReg_date(rs.getTimestamp("reg_date"));
 			}
 
 			System.out.println("DAO : 회원 정보 저장 완료");
@@ -235,8 +278,8 @@ public class UserDAO {
 		return ub;
 
 	} // getUSer(id)
-
-	// getUpdateUser(ub)
+	
+	// 유저 정보 업데이트 / getUpdateUser(ub)
 	public int getUpdateUser(UserBean ub) {
 		int check = -1;
 
@@ -285,7 +328,7 @@ public class UserDAO {
 		return check;
 	}
 
-	// deleteUser(ub)
+	// 유저 정보 삭제 / deleteUser(ub)
 	public int deleteUser(UserBean ub) {
 		int check = 1;
 
@@ -330,7 +373,7 @@ public class UserDAO {
 
 	}
 
-	// duplicateNickNameCheck(ub)
+	// 닉네임 중복 체크 / duplicateNickNameCheck(ub)
 	public boolean duplicateNickNameCheck(UserBean ub) {
 		boolean x = false;
 
@@ -358,7 +401,7 @@ public class UserDAO {
 		return x;
 	}
 
-	// duplicateNickNameCheck(ub)
+	// 이메일 중복 체크 / duplicateEmailCheck(ub)
 	public boolean duplicateEmailCheck(UserBean ub) {
 		boolean x = false;
 
@@ -384,6 +427,44 @@ public class UserDAO {
 		}
 
 		return x;
+	}
+
+	public int updatePassword(UserBean ub, String userPass2) {
+		int result = -1;
+
+		try {
+			con = getCon();
+
+			sql = "select userPass from tp_users where userID = ?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, ub.getUserID());
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				if (ub.getUserPass().equals(rs.getString("userPass"))) {
+					sql = "update tp_users set userPass =? where userID = ? ";
+
+					pstmt = con.prepareStatement(sql);
+
+					pstmt.setString(1, userPass2);
+					pstmt.setString(2, ub.getUserID());
+
+					pstmt.executeUpdate();
+					result = 1;
+				} else {
+					result = 0;
+				}
+			} else {
+				result = -1;
+			}
+		} catch (Exception e) {
+			System.out.println("updatePassword 에서 오류 : " + e);
+			;
+		} finally {
+			closeDB();
+		}
+		return result;
 	}
 
 }

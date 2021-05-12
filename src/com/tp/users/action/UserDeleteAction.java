@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import com.tp.users.db.UserBean;
 import com.tp.users.db.UserDAO;
@@ -55,20 +54,17 @@ public class UserDeleteAction implements Action {
 			out.print("</script>");
 			
 			out.close();
-			
-			System.out.println("if1");
+
 			return null; 
 			
 		} else if(check == -1) {
 			
 			out.print("<script>");
-			out.print("alert('회원정보 없음')");
+			out.print("alert('회원정보 없음'); ");
 			out.print("history.back();");
 			out.print("</script>");
 			
 			out.close();
-			
-			System.out.println("if2");
 			
 			return null; 
 			
@@ -76,13 +72,11 @@ public class UserDeleteAction implements Action {
 			session.invalidate();
 			
 			out.print("<script>");
-			out.print("alert('탈퇴가 완료되었습니다.')");
-			out.print("location.href='./UserLogin.do';");
+			out.print("alert('탈퇴가 완료되었습니다.'); ");
+			out.print("location.href='./Main.do';");
 			out.print("</script>");
 			
 			out.close();
-			
-			System.out.println("if3");
 			
 			return null;
 			

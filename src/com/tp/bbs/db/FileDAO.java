@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -56,39 +55,52 @@ public class FileDAO {
 
 	// 파일 업로드
 	public int upload(String fileName, String fileRealName, String userID) {
-		int bno = 0;
+		int fileID = 0;
+		int bbsID = 0;
 		try {
 			con = getCon();
 			sql = "select max(fileID) from tp_files";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				bno = rs.getInt(1) + 1;
+				fileID = rs.getInt(1) + 1;
 			}
-
+			String sql2 = "select max(bbsID) from tp_bbs";
+				pstmt = con.prepareStatement(sql2);
+	
+				rs = pstmt.executeQuery();
+				// 있으면 + 1, 없으면 1
+				if (rs.next()) {
+					bbsID = rs.getInt(1);
+				} else {
+					bbsID = 1;
+				}
 			sql = "insert into tp_files(fileID, fileName, fileRealName, bbsID, userID, file_date) "
 					+ " values(?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setInt(1, bno);
+			pstmt.setInt(1, fileID);
 			pstmt.setString(2, fileName);
 			pstmt.setString(3, fileRealName);
-			pstmt.setInt(4, bno);
+			pstmt.setInt(4, bbsID);
 			pstmt.setString(5, userID);
 
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("upload()메소드에서 예외 발생 : " + e);
+		}finally {
+			closeDB();
 		}
 		return -1;
 	}
+	
 
-	// 파일 불러오기 // 이름이 아니라 다른 것 가져와보기
+	// 파일 불러오기 -- 삭제를 시키기 위해서 fileRealName을 가져온다.
 	public String getFile(int bbsID) {
-		String fileName = null;
+		String fileRealName = null;
 		try {
 			con = getCon();
-			sql = "select fileName from tp_files where bbsID = ?";
+			sql = "select fileRealName from tp_files where bbsID = ?";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -96,36 +108,39 @@ public class FileDAO {
 
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				fileName = rs.getString(1);
+				fileRealName = rs.getString(1);
 			}
 		} catch (Exception e) {
 			System.out.println("getFile()메소드에서 예외 발생 : " + e);
 		} finally {
 			closeDB();
 		}
-		return fileName;
+		return fileRealName;
 	}
 
-	public int updateFile(String fileName, int bbsID) {
+	// 파일 업데이트
+	public int updateFile(String fileName, String fileRealName, int bbsID) {
 		try {
 			con = getCon();
-			sql = "update tp_files set fileName =? where bbsID = ? ";
+			sql = "update tp_files set fileName =?, fileRealName = ? where bbsID = ? ";
 			
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, fileName);
-			pstmt.setInt(2, bbsID);
+			pstmt.setString(2, fileRealName);
+			pstmt.setInt(3, bbsID);
 			
+			System.out.println("updateFile()에서의 fileName : " + fileName);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("updateFile()메소드에서 예외 발생 : " + e);
 		} finally {
 			closeDB();
 		}
 		return -1;
 	}
-	
-	// 확인용 - 파일 내용 / 추후 삭제 예정
+		
+	// 파일 리스트 출력
 	public ArrayList getFileList() {
 		sql = "select * from tp_files";
 		ArrayList list = new ArrayList();
@@ -149,6 +164,8 @@ public class FileDAO {
 			}
 		} catch (Exception e) {
 			System.out.println("getFileList()메소드에서 예외 발생 : " + e);
+		}finally {
+			closeDB();
 		}
 		return list;
 	}

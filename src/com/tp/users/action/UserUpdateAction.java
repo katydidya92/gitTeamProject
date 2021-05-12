@@ -53,7 +53,7 @@ public class UserUpdateAction implements Action {
 		// 전달 정보를 저장 
 		UserBean ub = new UserBean();
 		
-		String img = multi.getFilesystemName("file");
+		String img = multi.getFilesystemName("userProfile");
 		ub.setUserProfile(img);
 		
 		ub.setUserID(multi.getParameter("userID"));

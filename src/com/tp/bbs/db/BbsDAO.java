@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.tp.bbs.bean.BbsBean;
+
 public class BbsDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -53,54 +55,62 @@ public class BbsDAO {
 	}
 
 	// 게시판 글 입력 / insertBbs
-	public void insertBbs(BbsBean bbs) {
-		int bbsID = 0;
+		public void insertBbs(BbsBean bbs) {
+			int bbsID = 0;
+			int fileID = 0;
 
-		try {
-			con = getCon();
-			sql = "select max(bbsID) from tp_bbs";
+			try {
+				con = getCon();
+				sql = "select max(bbsID) from tp_bbs";
 
-			pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 
-			rs = pstmt.executeQuery();
-			// 있으면 + 1, 없으면 1
-			if (rs.next()) {
-				bbsID = rs.getInt(1) + 1;
-			} else {
-				bbsID = 1;
+				rs = pstmt.executeQuery();
+				// 있으면 + 1, 없으면 1
+				if (rs.next()) {
+					bbsID = rs.getInt(1) + 1;
+				} else {
+					bbsID = 1;
+				}
+				
+				String sql2 = "select max(fileID) from tp_files";
+				pstmt = con.prepareStatement(sql2);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					fileID = rs.getInt(1) + 1;
+				}
+
+				sql = "insert into tp_bbs(bbsID, bbs_ref, bbs_seq, bbs_lev, bbs_available, bbs_category, bbs_title, bbs_content, bbs_readcount, bbs_date, userID, userNickName, fileID, best, isAdmin, likeID, ip)"
+						+ "values(" + "?,?,?,?,?,?,?,?,?,now(),?," + "?,?,?,?,?,?)";
+
+				pstmt = con.prepareStatement(sql);
+
+				pstmt.setInt(1, bbsID);
+				pstmt.setInt(2, bbsID); // 번호
+				pstmt.setInt(3, 0); // 순서
+				pstmt.setInt(4, 0); // 답글 단계
+				pstmt.setInt(5, 1); // 사용 : 1 / 안쓰면 0
+				pstmt.setInt(6, bbs.getBbs_category()); // 카테고리 - 일단 0
+				pstmt.setString(7, bbs.getBbs_title());
+				pstmt.setString(8, bbs.getBbs_content());
+				pstmt.setInt(9, 0); // 조회수
+				pstmt.setString(10, bbs.getUserID()); // user.getUserID()
+				pstmt.setString(11, bbs.getUserNickName()); // user.getUserNickName()
+				pstmt.setInt(12, fileID); // file.getFileID() // bbs.getFileID()
+				pstmt.setInt(13, 0); // 베스트 : 1 / 일반 : 0
+				pstmt.setInt(14, 0); // user.getIsAdmin()
+				pstmt.setInt(15, 0); // lk.getLikeID()
+				pstmt.setString(16, bbs.getIp());
+
+				pstmt.executeUpdate();
+
+				System.out.println("DAO : 게시글 등록 완료");
+			} catch (Exception e) {
+				System.out.println("insertBbs 메소드 내부에서 오류 : " + e);
+			} finally {
+				closeDB();
 			}
-
-			sql = "insert into tp_bbs(bbsID, bbs_ref, bbs_seq, bbs_lev, bbs_available, bbs_category, bbs_title, bbs_content, bbs_readcount, bbs_date, userID, userNickName, fileID, best, isAdmin, likeID, ip)"
-					+ "values(" + "?,?,?,?,?,?,?,?,?,now(),?," + "?,?,?,?,?,?)";
-
-			pstmt = con.prepareStatement(sql);
-
-			pstmt.setInt(1, bbsID);
-			pstmt.setInt(2, bbsID); // 번호
-			pstmt.setInt(3, 0); // 순서
-			pstmt.setInt(4, 0); // 답글 단계
-			pstmt.setInt(5, 1); // 사용 : 1 / 안쓰면 0
-			pstmt.setInt(6, bbs.getBbs_category()); // 카테고리 - 일단 0
-			pstmt.setString(7, bbs.getBbs_title());
-			pstmt.setString(8, bbs.getBbs_content());
-			pstmt.setInt(9, 0); // 조회수
-			pstmt.setString(10, bbs.getUserID()); // user.getUserID()
-			pstmt.setString(11, bbs.getUserNickName()); // user.getUserNickName()
-			pstmt.setInt(12, bbsID); // file.getFileID() // bbs.getFileID()
-			pstmt.setInt(13, 0); // 베스트 : 1 / 일반 : 0
-			pstmt.setInt(14, 0); // user.getIsAdmin()
-			pstmt.setInt(15, 0); // lk.getLikeID()
-			pstmt.setString(16, bbs.getIp());
-
-			pstmt.executeUpdate();
-
-			System.out.println("DAO : 게시글 등록 완료");
-		} catch (Exception e) {
-			System.out.println("insertBbs 메소드 내부에서 오류 : " + e);
-		} finally {
-			closeDB();
 		}
-	}
 
 	// 게시판 리스트 출력 / getBbsList
 	public List getBbsList(int startRow, int rowSize) {
@@ -126,6 +136,7 @@ public class BbsDAO {
 				bbs.setBbs_date(rs.getTimestamp("bbs_date"));
 				bbs.setUserID(rs.getString("userID"));
 				bbs.setBbs_available(rs.getInt("bbs_available"));
+				bbs.setFileID(rs.getInt("fileID"));
 				/*
 				 * bbs.setBbsID(rs.getInt("bbsID"));
 				 * bbs.setBbs_ref(rs.getInt("bbs_ref"));
@@ -139,7 +150,7 @@ public class BbsDAO {
 				 * bbs.setBbs_date(rs.getTimestamp("bbs_date"));
 				 * bbs.setUserID(rs.getString("userID"));
 				 * bbs.setUserNickName(rs.getString("userNickName"));
-				 * bbs.setFileID(rs.getInt("fileID"));
+				 * 
 				 * bbs.setBest(rs.getInt("best"));
 				 * bbs.setIsAdmin(rs.getInt("isAdmin"));
 				 * bbs.setLikeID(rs.getInt("likeID"));
@@ -241,8 +252,9 @@ public class BbsDAO {
 			pstmt.setInt(4, bb.getBbsID());
 
 			pstmt.executeUpdate();
+			System.out.println("updateBbs가 성공했습니다. " );
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("updateBbs 실패 : " + e);
 		} finally {
 			closeDB();
 		}

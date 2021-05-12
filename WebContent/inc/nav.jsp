@@ -7,93 +7,101 @@
     <link rel="stylesheet" type="text/css" href="${contextPath }/css/13.css" /> <!--common.css-->
     <link rel="stylesheet" type="text/css" href="${contextPath }/css/6.css" /> <!--main.css-->
     <link rel="stylesheet" type="text/css" href="${contextPath }/css/14.css" /> <!--swiper.min.css-->
-
+    <link rel="stylesheet" type="text/css" href="${contextPath }/css/16.css" />
+    <link rel="stylesheet" type="text/css" href="${contextPath }/css/17.css" />
 <!-- common script-->
     <script type="text/javascript" src="${contextPath }/js/10.js"></script> <!-- jquery-1.8.2.min.js -->
     <script type="text/javascript" src="${contextPath }/js/12.js"></script> <!-- TweenMax.js -->
-    
     <script type="text/javascript" src="${contextPath }/js/jquery.mCustomScrollbar.min.js"></script>
-
-
-    <!-- main script-->
+<!-- main script-->
     <script type="text/javascript" src="${contextPath }/js/7.js"></script> <!-- design_common.js -->
     <script type="text/javascript" src="${contextPath }/js/8.js"></script> <!-- header.js -->
     <script type="text/javascript" src="${contextPath }/js/9.js"></script> <!-- bxslider.min.js //mainSlider 사용 -->
     <script type="text/javascript" src="${contextPath }/js/15.js"></script> <!-- swiper.min.js //popup 사용 -->
-<!-- header -->
-<div class="header main" >
-    <h1><a href="${contextPath }/Main.do" class="logo"><span class="blind">VISIT BUSAN</span></a></h1>
-    <a href="javascript:" class="mGnbOpen"><img src="${contextPath }/img/main/gnb_btn.png" alt="전체메뉴열기" width="21" /></a>
 
-    <!-- 검색기능을 위한 폼 -->
-    <form name="headerSearchForm"  action="/kor/search/index.do" method="post">
-        <input type="hidden" name="searchKey"/>
-    </form>
+<div class="header main" >
+    <h1><a href="./Main.do" class="logo"><span class="blind">VISIT BUSAN</span></a></h1>
+    <a href="javascript:" class="mGnbOpen"><img src="${contextPath }/img/main/gnb_btn.png" alt="전체메뉴열기" width="21" /></a>
 
     <!-- pc gnb -->
     <ul id="gnb">
- 
-    <li class="dep">
-        <a href="javascript:" class="oneD">여행지 추천</a>
-        <ul class="twoD">
-			<li>
-			    <a href="${contextPath }/AtrList.lo" target="_self">명소</a>
-			</li>
-			<li>
-			    <a href="${contextPath }/Restaurant.lo" target="_self">음식</a>
-			</li>
-    	</ul>
-    </li>
-
-    <!-- <li class="dep">
-        <a href="javascript:" class="oneD">예약/예매</a>
-        <ul class="twoD">
-                <li>
-                    <a href="/index.do?menuCd=DOM_000000202002000000" target="_self">숙소 예약</a>
-                </li>
-                <li>
-                    <a href="/index.do?menuCd=DOM_000000202003000000" target="_self">입장권 예매</a>
-                </li>
-    	</ul>
-    </li> -->
-    
+	    <li class="dep">
+	        <a href="javascript:" class="oneD">여행지 추천</a>
+	        <ul class="twoD">
+				<li>
+				    <a href="${contextPath }/AtrList.lo" target="_self">명소</a>
+				</li>
+				<li>
+				    <a href="${contextPath }/Restaurant.lo" target="_self">음식</a>
+				</li>
+	    	</ul>
+	    </li>
 	    <li class="dep">
 	        <a href="javascript:" class="oneD">커뮤니티</a>
 	        <ul class="twoD">
 				<li>
-					<a href="${contextPath }/BbsList.bo" target="_self">후기갤러리</a>
+					<a href="${contextPath }/ReviewList.ao" target="_self">후기 게시판</a>
 				</li>
 				<li>
-					<a href="${contextPath }/BbsList.bo" target="_self">자유게시판</a>
+					<a href="${contextPath }/EventList.bd" target="_self">이벤트</a>
 				</li>
 	        </ul>
 	    </li>
-    
+    	<li class="dep">
+	            <a href="javascript:" class="oneD">유용한정보</a>
+	            <ul class="twoD">
+					<li>
+						<a href="${contextPath }/NoticeList.no" target="_self">공지</a>
+					</li>
+					<li>
+						<a href="${contextPath }/QnaWrite.qo" target="_self">QnA</a>
+					</li>
+	            </ul>
+	        </li>
 	    <li class="dep">
-	        <a href="javascript:" class="oneD">유용한 정보</a>
-	        <ul class="twoD">
-                <li>
-                    <a href="${contextPath }/BbsList.bo" target="_self">공지</a>
-                </li>
-                <li>
-                    <a href="${contextPath }/BbsList.bo" target="_self">이벤트</a>
-                </li>
-	        </ul>
+	    	<a href="javascript:" class="oneD">회원 관리</a>
+    		<ul class="twoD">
+		    <c:choose>
+		    	<c:when test="${userID eq null }">
+				    <li>
+			    		<a href="${contextPath }/UserLogin.do">로그인</a>
+				    </li>
+				    <li>
+	                    <a href="${contextPath }/UserJoin.do">회원가입</a>
+	                </li>
+			    </c:when>
+		        <c:otherwise>
+			        <li>
+						<a href="${contextPath }/UserLogout.do">로그아웃</a>
+					</li>
+					<li>
+						<a href="${contextPath }/MyPage.do">마이페이지</a>
+					</li>
+				</c:otherwise>
+	    	</c:choose>
+	    	</ul>
 	    </li>
-	    <li class="dep" style = "float: right">
-	    	<a href="javascript:void(0);" onclick="javascript:loginPage();" class="oneD">로그인</a>
-	    </li>
-    </ul>
-
+   	</ul>
+   	<ul id="user">
+   	  <c:choose>
+	     <c:when test="${userID eq null }">
+   	        <li>🧡 로그인이 필요합니다.</li>
+   	     </c:when>
+		 <c:otherwise>
+		    <li>💗${userID}님 환영합니다.</li>
+		 </c:otherwise>
+	  </c:choose>
+		        
+   	</ul>
+  
     <!-- mobile gnb -->
     <div id="mGnb">
     <c:choose>
     	<c:when test="${userID eq null }">
-    	<%-- <c:when test="${sessionScope.userID eq null }"> --%>
 	        <div class="mo-btn-area">
 	            <ul>
 	                <li class="bt-one">
-	                    <a href="javascript:void(0);" onclick="javascript:loginPage();"  class="login mo-login">로그인</a>
+	                    <a href="${contextPath }/UserLogin.do">로그인</a>
 	                </li>
 	                <li class="bt-two">
 	                    <a href="${contextPath }/UserJoin.do" class="my">회원가입</a>
@@ -108,7 +116,7 @@
 	                     <a href="${contextPath }/UserLogout.do" class="my">로그아웃</a>
 	                </li>
 	                <li class="bt-two">
-	                    <a href="javascript:void(0);" onclick="javascript:myPage('true');" class="my">마이페이지</a>
+	                    <a href="${contextPath }/MyPage.do">마이페이지</a>
 	                </li>
 	            </ul>
 	        </div>
@@ -119,74 +127,44 @@
 	        <li class="dep">
 	            <a href="javascript:" class="oneD">부산에가면</a>
 	            <ul class="twoD">
-                   <li>
-			    <a href="${contextPath }/AtrList.lo" target="_self">명소</a>
-			</li>
-			<li>
-			    <a href="${contextPath }/Restaurant.lo" target="_self">음식</a>
-			</li>
+	            	<li>
+                    	<a href="${contextPath }/AtrList.lo" target="_self">명소</a>
+					</li>
+					<li>
+					    <a href="${contextPath }/Restaurant.lo" target="_self">음식</a>
+					</li>
 	        	</ul>
 	        </li>
-	    <li class="dep">
-	        <a href="javascript:" class="oneD">커뮤니티</a>
-	        <ul class="twoD">
-				<li>
-					<a href="${contextPath }/BbsList.bo" target="_self">후기갤러리</a>
-				</li>
-				<li>
-					<a href="${contextPath }/BbsList.bo" target="_self">자유게시판</a>
-				</li>
-	        </ul>
-	    </li>
-	        <!-- 
+	        
 	        <li class="dep">
-			    <a href="javascript:" class="oneD">예약/예매</a>
-			    <ul class="twoD">
+		        <a href="javascript:" class="oneD">커뮤니티</a>
+		        <ul class="twoD">
 					<li>
-						<a href="/index.do?menuCd=DOM_000000202002000000" target="_self">숙소 예약</a>
-					</li>
+			           <a href="${contextPath }/ReviewList.ao" target="_self">후기 게시판</a>
+			         </li>
 					<li>
-						<a href="/index.do?menuCd=DOM_000000202003000000" target="_self">입장권 예매</a>
+						<a href="${contextPath }/EventList.bd" target="_self">이벤트</a>
 					</li>
-				</ul>
-	   		</li> 
-		   	-->
+		        </ul>
+		    </li>
 	        
 	        <li class="dep">
 	            <a href="javascript:" class="oneD">유용한정보</a>
 	            <ul class="twoD">
 					<li>
-	                    <a href="${contextPath }/BbsList.bo" target="_self">공지</a>
-	                </li>
-	                <li>
-	                    <a href="${contextPath }/BbsList.bo" target="_self">이벤트</a>
-	                </li>
+						<a href="${contextPath }/NoticeList.no" target="_self">공지</a>
+					</li>
+					<li>
+						<a href="${contextPath }/QnaWrite.qo" target="_self">QnA</a>
+					</li>
 	            </ul>
 	        </li>
         </ul>
-        <a href="javascript:" class="mClose"><img src="/images/common/gnb_xbtn.png" alt="닫기" width="17" /></a>
-    </div>
-
-    <div class="utill">
-        
-          
-        <a href="javascript:" class="sch">검색</a>
-        <div class="searchPop">
-            <div class="innerArea">
-                <div class="inputArea">
-                    <input type="text" id="total_search" name="totalSearchFuncKeyword" onkeydown="totalSearchFuncKeywordEnterProc('/KR/index.do?contentsSid=373&cate=ALL&currentPage=1&searchTerm=')" placeholder="검색어를 입력해주세요" />
-                    <label class="blind" for="total_search">통합검색</label> 
-                    <a href="javascript:totalSearchFuncKeywordProc('/KR/index.do?contentsSid=373&cate=ALL&currentPage=1&searchTerm=')" class="btn"><img src='${contextPath }/img/main/o.jpg' alt="검색" /></a>
-                </div>
-                <a href="javascript:" class="closeBtn">닫기</a>
-            </div>
-        </div>        
-        <a href="javascript:void(0);" onclick="javascript:myPage('true');" class="my mo-dn">마이페이지</a>
+        <a href="javascript:" class="mClose"><img src="${contextPath }/img/main/x-mark.png" alt="닫기" width="20" /></a>
     </div>
     <p class="twoDBg"></p>
 </div>
 <p class="mobileBg"></p>
-
 
 <script>
     // html dom 이 다 로딩된 후 실행된다.
@@ -203,26 +181,4 @@
             }
         });
     });
-
-    function loginPage(){
-        $('#loginPage').submit();
-    }
-
-    function myPage(needLogin){
-        if(needLogin == true || needLogin == 'true'){ //로그인 필요
-        	
-            alert('로그인이 필요한 서비스입니다.');
-            location.href="${contextPath }/UserLogin.do";
-            
-            $('#loginPage').submit();
-        }
-    }
-
 </script>
-<!-- header //-->
-<!-- 스크립트문 사용해서 로그인 사용 / loginPage 검색해서 확인 -->
-<form action="${contextPath }/UserLogin.do" id="loginPage" method="post">
-    <input type="hidden" name="lang_cd" id="lang_cd" value="ko">
-</form>
-                                                                                 
-    <!--// header -->

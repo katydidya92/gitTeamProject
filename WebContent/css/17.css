@@ -1059,31 +1059,8 @@ ul.nearTab_custom li.current button{background: #1b4ec0;/* padding:8px 35px 8px 
 .rev-container .rev-contb .pic-item .pic-view{width:100%;height: 86px; border: 1px solid #e5e5e5; overflow: hidden; background:#f4f4f4 url(/images/sub/revpop-noImg.png) center no-repeat; }
 .rev-container .rev-contb .pic-item .pic-view img{width:100%;}
 .rev-container .rev-contb .pic-item .btn-file{text-align:center;margin-top: 5px;}
-/* ì ‘ê·¼ì„± ë§žì¶”ë©´ì„œ í¬ë¡¬ ë””ìžì¸ ìˆ˜ì •
-.rev-container .rev-contb .pic-item .btn-file {
-    width: 86px;
-    height: 28px;
-    overflow: hidden;
-    position: relative;
-    margin: 0 auto;
-    margin-top: 5px;
-}
-*/
-/* ì ‘ê·¼ì„± ë§žì¶”ë©´ì„œ ie ë””ìžì¸ ë³„ê°œë¡œ ìˆ˜ì •
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    .rev-container .rev-contb .pic-item .btn-file {
-        width: 86px;
-        height: 28px;
-        overflow: hidden;
-        position: relative;
-        margin: 0 auto;
-        margin-top: 5px;
-        border: 1px solid #ddd;
-    }
-}
-*/
 
-/* ì ‘ê·¼ì„± ê´€ë ¨ ì¶”ê°€ CSS */
+
 .rev-container .rev-contb .pic-item.w3c_custom {
     float: left;
     width: 32%;
@@ -1150,35 +1127,6 @@ ul.nearTab_custom li.current button{background: #1b4ec0;/* padding:8px 35px 8px 
     border: 0;
 }
 
-/* ì ‘ê·¼ì„± ë§žì¶”ë©´ì„œ í¬ë¡¬ ë””ìžì¸ ìˆ˜ì •
-.btn-file label {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-}
-
-.btn-file input[type="file"] {
-    width: 87px;
-    padding: 0;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-}
-*/
-
-/* ì ‘ê·¼ì„± ë§žì¶”ë©´ì„œ ie ë””ìžì¸ ë³„ê°œë¡œ ìˆ˜ì •
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-
-    .btn-file input[type="file"] {
-        width: 100px;
-        padding: 0;
-        position: absolute;
-        left: -14px;
-        top: -3px;
-    }
-}
-*/
 
 @media all and (max-width:640px) {
     .modal-body > .container{padding:0; width:100%;}
@@ -1313,7 +1261,7 @@ ul.nearTab_custom li.current button{background: #1b4ec0;/* padding:8px 35px 8px 
 
 
 
-.viewTop{position:fixed;right: 2%;bottom: 4%;width: 55px;height:55px;line-height: 50px;border-radius: 4px;box-shadow: 4px 3px 6px rgba(0,0,0,0.3);color: #fff;background: #373f4e url(/images/common/viewTopIcon.png) center 3px no-repeat;transition:.3s;text-indent:-99999px;z-index:999999;}
+.viewTop{position:fixed;right: 2%;bottom: 4%;width: 55px;height:55px;line-height: 50px;border-radius: 4px;box-shadow: 4px 3px 6px rgba(0,0,0,0.3);color: #fff;background: url(../img/up-arrow.png) center no-repeat;transition:.3s;text-indent:-99999px;z-index:999999;}
 .viewTop:hover{background-color:#1442a1; background-position:center -2px;}
 
 .tab_wrap.acmTab{border-bottom: 1px solid #bfbfbf;}
@@ -1338,8 +1286,6 @@ ul.nearTab_custom li.current button{background: #1b4ec0;/* padding:8px 35px 8px 
 .bsArea_stay_list li.nth15,
 .bsArea_stay_list li.nth16{margin-top: 540px;}
 .bsArea_stay_list li a{display:block;margin: 0px 10px;min-height: 134px;text-align: center;transition:.3s;}
-/*.bsArea_stay_list li a:hover{border:1px solid #d8d8d8; border-radius:10px; padding:5px; margin-top:-9px; box-shadow:5px 5px 5px #cccbcb;}
-.bsArea_stay_list li a:hover .arro{display:inline-block; padding:10px 0 0 0;}*/
 
 .bsArea_stay_list li.active a{border:1px solid #d8d8d8; border-radius:10px; padding:5px; margin-top:-9px; box-shadow:5px 5px 5px #cccbcb;}
 .bsArea_stay_list li.active a .arro{display:inline-block; padding:10px 0 0 0;}

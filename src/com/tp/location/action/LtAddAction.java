@@ -2,6 +2,7 @@ package com.tp.location.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.tp.location.bean.LocationBean;
 
@@ -14,13 +15,17 @@ public class LtAddAction implements Action {
 
 		// 한글데이터 처리
 		request.setCharacterEncoding("UTF-8");
-
+		
+		HttpSession session = request.getSession();
+		String userID = (String)session.getAttribute("userID");
+		
 		// 장소 정보 저장
 		LocationBean lb = new LocationBean();
 		LocationDAO ldao = new LocationDAO();
 		
+		lb.setLocation_name(request.getParameter("location_name"));
 		lb.setLocation_spot(request.getParameter("location_spot"));
-		lb.setUserID(request.getParameter("userID"));
+		lb.setUserID(userID);
 
 		ldao.insertLocation(lb);
 

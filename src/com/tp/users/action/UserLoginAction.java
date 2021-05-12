@@ -18,6 +18,8 @@ public class UserLoginAction implements Action {
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 
+		ActionForward forward = new ActionForward();
+
 		// 전달되는 파라미터 정보 저장
 		// 자바빈 객체 생성후 파라미터 저장
 		UserBean ub = new UserBean();
@@ -47,8 +49,6 @@ public class UserLoginAction implements Action {
 
 			out.close(); // 자원해제
 
-			// **return으로 다시 controller에게 알려줘야 하는데 controller로 js의 결과값이 다시 가는것을
-			// 방지하기 위해
 			return null; // js 이동시 컨트롤러의 이동정보는 null
 		} else if (result == -1) { // 아이디 없음
 			out.print("<script>");
@@ -60,31 +60,28 @@ public class UserLoginAction implements Action {
 
 			return null;
 		} else { // result == 1 (로그인 성공)
-			System.out.println("M : 로그인 성공! 메인페이지로 이동합니다");
-			
+			String userID = udao.getUser(request.getParameter("userID")).getUserID();
+			int isMember = udao.getUser(request.getParameter("userID")).getIsMember();
+			System.out.println(userID + "의 isMember은 " + isMember);
 			HttpSession session = request.getSession();
-			session.setAttribute("userID", ub.getUserID());
-			System.out.println(ub.getUserID());
-			// 1. 액션포워드 사용시 return null; 삭제
-			ActionForward forward = new ActionForward();
-			forward.setPath("./Main.do");
-			forward.setRedirect(true); // 가상주소(MemberLogin.me)에서 가상주소로 이동 -> true
-			
-			// true - sendRedirect() 방식으로 이동 (주소,화면 변경O)
-			// false - forward() 방식으로 이동 (주소 변경x, 화면 변경 O)				
-			return forward;
+			if (isMember == 1) {
 
-			// //2.
-			// out.print("<script>");
-			// out.print("alert('로그인 성공!');");
-			// out.print("location.href='./Main.me';");
-			// out.print("</script>");
-			//
-			// out.close();
-			//
-			// return null;
+				System.out.println("M : 로그인 성공! 메인페이지로 이동합니다");
+
+				session.setAttribute("userID", ub.getUserID());
+				System.out.println(ub.getUserID());
+
+				forward.setPath("./Main.do");
+				forward.setRedirect(true); 
+				return forward;
+											
+			} else if(isMember == 0) {
+				session.setAttribute("userID", ub.getUserID());
+				forward.setPath("./UserJoinCheckAction.do");
+				forward.setRedirect(true);
+				return forward;
+			}
+			return null;
 		}
-
 	}
-
 }

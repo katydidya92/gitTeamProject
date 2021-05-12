@@ -6,9 +6,7 @@ public class LikeBean {
 	private int bbsID;
 	private int bbs_category;
 	private int cmtID;
-	private int like;
-	private int unlike;
-	private int wish;
+	private int likeCount;
 
 	public int getLikeID() {
 		return likeID;
@@ -50,35 +48,18 @@ public class LikeBean {
 		this.cmtID = cmtID;
 	}
 
-	public int getLike() {
-		return like;
+	public int getLikeCount() {
+		return likeCount;
 	}
 
-	public void setLike(int like) {
-		this.like = like;
-	}
-
-	public int getUnlike() {
-		return unlike;
-	}
-
-	public void setUnlike(int unlike) {
-		this.unlike = unlike;
-	}
-
-	public int getWish() {
-		return wish;
-	}
-
-	public void setWish(int wish) {
-		this.wish = wish;
+	public void setLikeCount(int like) {
+		this.likeCount = like;
 	}
 
 	@Override
 	public String toString() {
 		return "LikeBean [likeID=" + likeID + ", userID=" + userID + ", bbsID=" + bbsID + ", bbs_category="
-				+ bbs_category + ", cmtID=" + cmtID + ", like=" + like + ", unlike=" + unlike + ", wish=" + wish + "]";
+				+ bbs_category + ", cmtID=" + cmtID + ", likeCount=" + likeCount + "]";
 	}
 
-	
 }

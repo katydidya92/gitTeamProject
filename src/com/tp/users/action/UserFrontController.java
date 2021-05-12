@@ -61,23 +61,54 @@ public class UserFrontController extends HttpServlet {
 			}
 
 		} 
-		else if (command.equals("/UserNickNameCheckAction.do")) {
-			System.out.println("C : /UserNickNameCheckAction.do");
+		else if (command.equals("/UserJoinAction.do")) {
+			System.out.println(" C : /UserJoinAction.do 호출 ");
+			System.out.println(" C : 정보를 가지고 DB에 처리후 페이지 이동 ");
 
-			action = new UserNickNameCheckAction();
+			action = new UserJoinAction();
 
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		} 
-		else if (command.equals("/UserJoinAction.do")) {
-			System.out.println(" C : /UserJoinAction.do 호출 ");
-			System.out.println(" C : 정보를 가지고 DB에 처리후 페이지 이동 ");
+		else if (command.equals("/UserJoinCheckAction.do")) {
+			System.out.println("C : /UserJoinCheckAction.do 호출");
+			
+			action = new UserJoinCheckAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} 
+		else if (command.equals("/UserJoinCheck.do")) {
+			System.out.println("C : /UserJoinCheck.do 호출");
+			
+			forward = new ActionForward();
+			forward.setPath("./user/JoinCheckForm.jsp");
+			forward.setRedirect(false);
+			
+		} 
+		else if (command.equals("/UserJoinCheckAction2.do")) {
+			System.out.println("C : /UserJoinCheckAction2.do 호출");
+			
+			action = new UserJoinCheckAction2();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} 
+		else if (command.equals("/UserNickNameCheckAction.do")) {
+			System.out.println("C : /UserNickNameCheckAction.do");
 
-			action = new UserJoinAction();
+			action = new UserNickNameCheckAction();
 
 			try {
 				forward = action.execute(request, response);
@@ -117,7 +148,6 @@ public class UserFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		} 
 		else if (command.equals("/UserLogout.do")) {
 			System.out.println("C : /UserLogout.do 호출");
@@ -140,7 +170,25 @@ public class UserFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
+		} 
+		else if (command.equals("/PwUpdate.do")) {
+			System.out.println("C : /PwUpdate.do 호출");
+			
+			forward = new ActionForward();
+			forward.setPath("./user/pwUpdate.jsp");
+			forward.setRedirect(false);
+			
+		} 
+		else if (command.equals("/PwUpdateAction.do")) {
+			System.out.println("C : /PwUpdate.do 호출");
+			
+			action = new PwUpdateAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} 
 		else if (command.equals("/UserUpdateAction.do")) {
 			System.out.println("C : /UserUpdateAction.do 호출");
@@ -152,13 +200,11 @@ public class UserFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		} 
 		else if(command.equals("/UserDelete.do")) {
 			System.out.println("C : /UserDelete.do 호출");
 
 			forward = new ActionForward();
-			
 			forward.setPath("./user/deleteForm.jsp");
 			forward.setRedirect(false);
 			
@@ -173,7 +219,6 @@ public class UserFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		} 
 		else if(command.equals("/UserEmailCheckAction.do")) {
 			System.out.println("C : /UserEmailCheckAction.do 호출");
@@ -195,19 +240,57 @@ public class UserFrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-		
 			}
-				
 		} 
 		else if(command.equals("/MyPage.do")) {
 			System.out.println("C : /MyPage.do 호출");
 			
 			forward = new ActionForward();
-			
 			forward.setPath("./user/myPage.jsp");
 			forward.setRedirect(false);
 			
 		}
+		else if(command.equals("/PwCheck.do")) {
+			System.out.println("C : /PwCheck.do 호출");
+			
+			forward = new ActionForward();
+			forward.setPath("./user/findPwForm.jsp");
+			forward.setRedirect(false);
+			
+		}
+		else if(command.equals("/MemberFindIdAction.do")){
+			System.out.println("C : /MemberFindIdAction.me 호출");
+			System.out.println("C : DB정보를 받아서 view 출력");
+			
+			action = new MemberFindIdAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+				}
+			}
+		else if(command.equals("/MemberFindPw.do")){
+			System.out.println("C : /MemberFindPw.me 호출");
+			System.out.println("C : DB정보를 받아서 view 출력");
+			
+			forward = new ActionForward();
+			forward.setPath("./user/findPwForm.jsp");
+			forward.setRedirect(false);
+		}
+		else if(command.equals("/MemberFindPwEmailAction.do")){
+			System.out.println("C : /MemberFindPwEmailAction.me 호출");
+			System.out.println("C : DB정보를 받아서 view 출력");
+			
+			action = new MemberFindPwEmailAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		System.out.println("		2. 가상주소 매핑(연결)			");
 
 		System.out.println("\n\n\n		3. 가상주소 페이지 이동			");
