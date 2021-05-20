@@ -71,17 +71,6 @@
 	<div class="container">
 		<div id="content">
 	  		<div class="innerwrap">
-	  		<c:set var="url" value="${pageContext.request.requestURL}" />
-			<c:set var="uri" value="${pageContext.request.requestURI}" />
-			<c:set var="scheme" value="${pageContext.request.scheme}" />
-			<c:set var="serverName" value="${pageContext.request.serverName}" />
-			<c:set var="serverPort" value="${pageContext.request.serverPort}" />
-	  		<h1>${scheme }</h1>
-	  		<h1>${serverName }</h1>
-	  		<h1>${serverPort }</h1>
-	  		<h1>${contextPath }</h1>
-	  		<h1>${url }</h1>
-	  		<h1>${uri }</h1>
 	  		<hr>
 		 		<form action="./BbsModifyEnd.bo" method="post">
 				 	<c:set value="${bbsDetail }" var="bbsDetail" />  
